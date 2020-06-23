@@ -52,6 +52,8 @@
         
           <a class="main-nav-link" href="/archives">Archives</a>
         
+          <a class="main-nav-link" href="/about">about</a>
+        
       </nav>
       <nav id="sub-nav">
         
@@ -193,11 +195,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Go-strings库"><a href="#Go-strings库" class="headerlink" title="Go strings库"></a>Go strings库</h1><h2 id="strings-Join方法"><a href="#strings-Join方法" class="headerlink" title="strings.Join方法"></a>strings.Join方法</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果自己实现，一般会使用bytes.Buffer来做缓冲实现</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Join</span><span class="params">(str []<span class="keyword">string</span>, sep <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">  <span class="comment">// 特殊情况应该做处理</span></span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(str) == <span class="number">0</span> &#123;</span><br><span class="line">  	<span class="keyword">return</span> <span class="string">""</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(str) == <span class="number">1</span> &#123;</span><br><span class="line">  	<span class="keyword">return</span> str[<span class="number">0</span>]</span><br><span class="line">  &#125;</span><br><span class="line">  buffer := bytes.NewBufferString(str[<span class="number">0</span>])</span><br><span class="line">  <span class="keyword">for</span> _, s := <span class="keyword">range</span> str[<span class="number">1</span>:] &#123;</span><br><span class="line">      buffer.WriteString(sep)</span><br><span class="line">      buffer.WriteString(s)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> buffer.String()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//但是官方没有使用bytes，可能是不想有所依赖</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Join</span><span class="params">(elems []<span class="keyword">string</span>, sep <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	<span class="keyword">switch</span> <span class="built_in">len</span>(elems) &#123;<span class="comment">//特殊情况处理</span></span><br><span class="line">	<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">""</span></span><br><span class="line">	<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">		<span class="keyword">return</span> elems[<span class="number">0</span>]</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//计算连接后的字符串长度</span></span><br><span class="line">	n := <span class="built_in">len</span>(sep) * (<span class="built_in">len</span>(elems) - <span class="number">1</span>)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(elems); i++ &#123;</span><br><span class="line">		n += <span class="built_in">len</span>(elems[i])</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> b Builder <span class="comment">//一个strings声明的类型</span></span><br><span class="line">	b.Grow(n)<span class="comment">//设置builder的buf，如果builder是新声明的，Grow后buf的cap则会是n，总之Grow后，builder的buf长度最少为n</span></span><br><span class="line">	</span><br><span class="line">    <span class="comment">//这里的写入字符串的操作，内部是用append实现，由于之前builder声明时，已经计算好了buf的长度，所以WriteString里的append操作不会有重复分配内存的情况</span></span><br><span class="line">    b.WriteString(elems[<span class="number">0</span>])</span><br><span class="line">	<span class="keyword">for</span> _, s := <span class="keyword">range</span> elems[<span class="number">1</span>:] &#123;</span><br><span class="line">		b.WriteString(sep)</span><br><span class="line">		b.WriteString(s)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> b.String()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+        <h1 id="Go-strings库"><a href="#Go-strings库" class="headerlink" title="Go strings库"></a>Go strings库</h1><h2 id="strings-Join方法"><a href="#strings-Join方法" class="headerlink" title="strings.Join方法"></a>strings.Join方法</h2>
+        
+          <p class="article-more-link">
+            <a href="/2020/04/15/Go%E8%AF%AD%E8%A8%80%E6%A0%87%E5%87%86%E5%BA%93-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-1/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -645,6 +648,8 @@
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">about</a>
   
 </nav>
     
