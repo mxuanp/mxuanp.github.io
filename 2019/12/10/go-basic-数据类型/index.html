@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>go-basic-数据类型 | 夜</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="到了数据类型的时间了呢，，，&#x3D;&#x3D;&#x3D;&lt;(￣ˇ￣)&#x2F;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go-basic-数据类型">
+<meta property="og:url" content="https://mxuanp.github.io/2019/12/10/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="夜">
+<meta property="og:description" content="到了数据类型的时间了呢，，，&#x3D;&#x3D;&#x3D;&lt;(￣ˇ￣)&#x2F;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-12-10T01:35:23.000Z">
+<meta property="article:modified_time" content="2020-06-23T12:02:02.288Z">
+<meta property="article:author" content="夜">
+<meta property="article:tag" content="go">
+<meta property="article:tag" content="golang">
+<meta property="article:tag" content="go-basic">
+<meta property="article:tag" content="go-basic-数据类型">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="夜" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">夜</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">思いつけば、この一生はなにを求めているんだろう</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mxuanp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-go-basic-数据类型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/10/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="article-date">
+  <time datetime="2019-12-10T01:35:23.000Z" itemprop="datePublished">2019-12-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/go/">go</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      go-basic-数据类型
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="到了数据类型的时间了呢，，，-lt-￣ˇ￣"><a href="#到了数据类型的时间了呢，，，-lt-￣ˇ￣" class="headerlink" title="到了数据类型的时间了呢，，，===&lt;(￣ˇ￣)/============================"></a>到了数据类型的时间了呢，，，===&lt;(￣ˇ￣)/============================</h1><a id="more"></a>
+
+<h2 id="基础数据类型"><a href="#基础数据类型" class="headerlink" title="基础数据类型"></a>基础数据类型</h2><ul>
+<li>int8,int16,int32,int64分别是8位，16位，32位，64位的有符号整型</li>
+<li>uint8,uint16,uint32,uint64与上面的整型对应，是无符号的整型</li>
+<li>int,uint对应特定CPU平台，可能32位，可能64位  PS:int并不是int32，如果都是32位，需要int为int32时，也需要强制转换</li>
+<li>float32,float64浮点数类型 PS：可以使用科学计数法表示</li>
+<li>bool布尔型</li>
+<li>string字符串  PS：字符串是不可变的字节序列，不是字符序列</li>
+<li>rune 和int32等价，通常用于表示Unicode码点，可以当成是字符</li>
+<li>complex64,complex128复数，对应float32和float64</li>
+<li>常量，使用const表示</li>
+</ul>
+<h2 id="复合数据类型"><a href="#复合数据类型" class="headerlink" title="复合数据类型"></a>复合数据类型</h2><h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><blockquote>
+<p>固定长度的特定类型元素序列，长度固定</p>
+</blockquote>
+<h2 id="slice切片"><a href="#slice切片" class="headerlink" title="slice切片"></a>slice切片</h2><blockquote>
+<p>不定长数组，用法和数组类型，以后单独谈论slice ===(✿◡‿◡)==========</p>
+<p>内置函数len，cap分别返回slice的长度和容量</p>
+<p>增加元素使用内置的append函数</p>
+<p>slice有好用的切片操作</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//arr在这里是一个引用</span></span><br><span class="line">arr := []<span class="keyword">int</span>&#123;&#125;</span><br><span class="line"><span class="comment">//arr是一个引用，为什么还要append返回，留在以后讨论===（小声：是由于底层数组容量问题，数组容量重新分配。。。(＠￣ー￣＠)）</span></span><br><span class="line">arr = <span class="built_in">append</span>(arr,<span class="number">1</span>)</span><br><span class="line">arr = <span class="built_in">append</span>(arr,<span class="number">2</span>)</span><br><span class="line"><span class="comment">//切片</span></span><br><span class="line">arr2 := arr[<span class="number">1</span>:] <span class="comment">//arr2的数据为arr下标1到最后</span></span><br><span class="line">arr2 = arr[<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><blockquote>
+<p>哈希表，无序键值对集合，以后单独讨论===(✿◡‿◡)==================</p>
+<p>可是使用内建函数make构建map,也可以直接用字面值创建</p>
+<p>删除某个key使用内置的delete函数</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ages := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>)</span><br><span class="line"></span><br><span class="line">ages := <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>&#123;</span><br><span class="line">    <span class="comment">//可以指定一些值</span></span><br><span class="line">    <span class="string">"alice"</span>:<span class="number">13</span>,</span><br><span class="line">    <span class="string">"kiyoko"</span>:<span class="number">14</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><blockquote>
+<p>聚合类型</p>
+<p>结构体里面可以嵌套结构体 PS：有点像继承</p>
+<p>聚合类型不可以包含自身，但可以包含自身的指针。。(略略略，不然怎么实现树，，，（〃｀ 3′〃）)</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Person <span class="keyword">struct</span>&#123;</span><br><span class="line">    Name <span class="keyword">string</span></span><br><span class="line">    Age <span class="keyword">int</span></span><br><span class="line">    Gender <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Worker <span class="keyword">struct</span>&#123;</span><br><span class="line">    Person <span class="comment">//嵌套</span></span><br><span class="line">    job <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用</span></span><br><span class="line"><span class="keyword">var</span> alice Person</span><br><span class="line"><span class="comment">//初始化的时候可以直接指定面值</span></span><br><span class="line"><span class="keyword">var</span> alice Person = Person&#123;Name:<span class="string">"alice"</span>,Age:<span class="number">13</span>,Gender:<span class="string">"女"</span>&#125;</span><br><span class="line"><span class="comment">//嵌套的struct初始化面值必须写全</span></span><br><span class="line"><span class="keyword">var</span> w Worker = Worker&#123;&#123;<span class="string">"alice"</span>,<span class="number">16</span>,<span class="string">"女"</span>&#125;,<span class="string">"jk"</span>&#125;</span><br><span class="line">alice.Name = <span class="string">"alice"</span></span><br><span class="line"><span class="comment">//可以使用指针取值</span></span><br><span class="line"><span class="keyword">var</span> p *Person = &amp;alice</span><br><span class="line">p.Name = <span class="string">"alice"</span> <span class="comment">//相当于 (*p).Name = "alice"</span></span><br><span class="line"><span class="comment">//也可以去内部的成员的指针</span></span><br><span class="line">p1 := &amp;alice.Name</span><br></pre></td></tr></table></figure>
+
+<h2 id="弄几个好玩的小栗子-ヾ-≧O≦-〃嗷-ヾ-≧O≦-〃嗷"><a href="#弄几个好玩的小栗子-ヾ-≧O≦-〃嗷-ヾ-≧O≦-〃嗷" class="headerlink" title="弄几个好玩的小栗子======ヾ(≧O≦)〃嗷======ヾ(≧O≦)〃嗷======================="></a>弄几个好玩的小栗子======ヾ(≧O≦)〃嗷<del>======ヾ(≧O≦)〃嗷</del>=======================</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//生成svg图像</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"math"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">	width, height = <span class="number">600</span>, <span class="number">320</span></span><br><span class="line">	cells         = <span class="number">100</span></span><br><span class="line">	xyrange       = <span class="number">30.0</span></span><br><span class="line">	xyscale       = width / <span class="number">2</span> / xyrange</span><br><span class="line">	zscale        = height * <span class="number">0.4</span></span><br><span class="line">	angle         = math.Pi / <span class="number">6</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sin30, cos30 = math.Sin(angle), math.Cos(angle)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">"&lt;svg xmlns='http://www.w3.org/2000/svg' style='stroke: orange; fill: white; stroke-width: 0.7' width='%d' height='%d'&gt;"</span>, width, height)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; cells; i++ &#123;</span><br><span class="line">		<span class="keyword">for</span> j := <span class="number">0</span>; j &lt; cells; j++ &#123;</span><br><span class="line">			ax, ay := corner(i+<span class="number">1</span>, j)</span><br><span class="line">			bx, by := corner(i, j)</span><br><span class="line">			cx, cy := corner(i, j+<span class="number">1</span>)</span><br><span class="line">			dx, dy := corner(i+<span class="number">1</span>, j+<span class="number">1</span>)</span><br><span class="line">			fmt.Printf(<span class="string">"&lt;polygon points='%g,%g,%g,%g,%g,%g,%g,%g'/&gt;\n"</span>, ax, ay, bx, by, cx, cy, dx, dy)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">"&lt;/svg&gt;"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">corner</span><span class="params">(i, j <span class="keyword">int</span>)</span> <span class="params">(<span class="keyword">float64</span>, <span class="keyword">float64</span>)</span></span> &#123;</span><br><span class="line">	x := xyrange * (<span class="keyword">float64</span>(i)/cells - <span class="number">0.5</span>)</span><br><span class="line">	y := xyrange * (<span class="keyword">float64</span>(j)/cells - <span class="number">0.5</span>)</span><br><span class="line">	z := f(x, y)</span><br><span class="line">	sx := width/<span class="number">2</span> + (x-y)*cos30*xyscale</span><br><span class="line">	sy := height/<span class="number">2</span> + (x+y)*sin30*xyscale - z*zscale</span><br><span class="line">	<span class="keyword">return</span> sx, sy</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">(x, y <span class="keyword">float64</span>)</span> <span class="title">float64</span></span> &#123;</span><br><span class="line">	r := math.Hypot(x, y)</span><br><span class="line">	<span class="keyword">return</span> math.Sin(r) / r</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//弄个二叉树排序======o(*^＠^*)o=========================================</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> tree <span class="keyword">struct</span> &#123;</span><br><span class="line">	value       <span class="keyword">int</span></span><br><span class="line">	left, right *tree</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	arr := []<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">7</span>&#125;</span><br><span class="line">	sort(arr)</span><br><span class="line">	fmt.Printf(<span class="string">"%v\n"</span>, arr)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sort</span><span class="params">(values []<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> root *tree</span><br><span class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> values &#123;</span><br><span class="line">		root = add(root, v)</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//将排序后的数据重新写入values</span></span><br><span class="line">	appendValues(values[:<span class="number">0</span>], root)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">appendValues</span><span class="params">(values []<span class="keyword">int</span>, t *tree)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> t != <span class="literal">nil</span> &#123;</span><br><span class="line">		values = appendValues(values, t.left)</span><br><span class="line">		values = <span class="built_in">append</span>(values, t.value)</span><br><span class="line">		values = appendValues(values, t.right)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> values</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(t *tree, value <span class="keyword">int</span>)</span> *<span class="title">tree</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> t == <span class="literal">nil</span> &#123;</span><br><span class="line">		t = <span class="built_in">new</span>(tree)</span><br><span class="line">		t.value = value</span><br><span class="line">		<span class="keyword">return</span> t</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> value &lt; t.value &#123;</span><br><span class="line">		t.left = add(t.left, value)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		t.right = add(t.right, value)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> t</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Error类型"><a href="#Error类型" class="headerlink" title="Error类型"></a>Error类型</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> error <span class="keyword">interface</span> &#123;</span><br><span class="line">	Error() <span class="keyword">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mxuanp.github.io/2019/12/10/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="ckbrwwf45000v4gom1uil4uxy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">go-basic-数据类型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/" rel="tag">golang</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/12/10/go-basic-json%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          go-basic-json的使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/09/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">go-basic-程序结构</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/go/">-go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/chef/">chef</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hello/">hello</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-golang-algorithm-%E7%AE%97%E6%B3%95-sort/" rel="tag">-go -golang -algorithm -算法 -sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RPC/" rel="tag">RPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cgo/" rel="tag">cgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gRPC/" rel="tag">gRPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-baisc-%E5%85%A5%E9%97%A8/" rel="tag">go-baisc-入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E5%87%BD%E6%95%B0/" rel="tag">go-basic-函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" rel="tag">go-basic-接口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">go-basic-数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%96%B9%E6%B3%95/" rel="tag">go-basic-方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" rel="tag">go-basic-程序结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-channel/" rel="tag">go-channel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-error/" rel="tag">go-error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-tool/" rel="tag">go-tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golamg/" rel="tag">golamg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/" rel="tag">golang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/goroutine/" rel="tag">goroutine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/" rel="tag">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/" rel="tag">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reflect/" rel="tag">reflect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slice/" rel="tag">slice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/start/" rel="tag">start</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/strings/" rel="tag">strings</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/websocket/" rel="tag">websocket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%AB%E9%94%85/" rel="tag">火锅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8C%AA%E8%B9%84/" rel="tag">猪蹄</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2/" rel="tag">面</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/go-golang-algorithm-%E7%AE%97%E6%B3%95-sort/" style="font-size: 10px;">-go -golang -algorithm -算法 -sort</a> <a href="/tags/RPC/" style="font-size: 10px;">RPC</a> <a href="/tags/cgo/" style="font-size: 10px;">cgo</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/gRPC/" style="font-size: 10px;">gRPC</a> <a href="/tags/go/" style="font-size: 20px;">go</a> <a href="/tags/go-baisc-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">go-baisc-入门</a> <a href="/tags/go-basic/" style="font-size: 16px;">go-basic</a> <a href="/tags/go-basic-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">go-basic-函数</a> <a href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" style="font-size: 10px;">go-basic-接口</a> <a href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">go-basic-数据类型</a> <a href="/tags/go-basic-%E6%96%B9%E6%B3%95/" style="font-size: 10px;">go-basic-方法</a> <a href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" style="font-size: 10px;">go-basic-程序结构</a> <a href="/tags/go-channel/" style="font-size: 10px;">go-channel</a> <a href="/tags/go-error/" style="font-size: 10px;">go-error</a> <a href="/tags/go-tool/" style="font-size: 10px;">go-tool</a> <a href="/tags/golamg/" style="font-size: 10px;">golamg</a> <a href="/tags/golang/" style="font-size: 18px;">golang</a> <a href="/tags/goroutine/" style="font-size: 10px;">goroutine</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/life/" style="font-size: 14px;">life</a> <a href="/tags/reflect/" style="font-size: 10px;">reflect</a> <a href="/tags/review/" style="font-size: 12px;">review</a> <a href="/tags/slice/" style="font-size: 10px;">slice</a> <a href="/tags/start/" style="font-size: 10px;">start</a> <a href="/tags/strings/" style="font-size: 10px;">strings</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">并发编程</a> <a href="/tags/%E7%81%AB%E9%94%85/" style="font-size: 10px;">火锅</a> <a href="/tags/%E7%8C%AA%E8%B9%84/" style="font-size: 10px;">猪蹄</a> <a href="/tags/%E9%9D%A2/" style="font-size: 10px;">面</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/06/23/hello-world/">Hello World - 夜 - Hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/21/Go%E8%AF%AD%E8%A8%80%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/">Go语言高级编程学习笔记-01</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/15/Go%E8%AF%AD%E8%A8%80%E6%A0%87%E5%87%86%E5%BA%93-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-1/">Go语言标准库-读书笔记-1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/07/%E5%9B%9E%E9%A1%BE-Go%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/">回顾-Go类型系统</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/20/go-slice/">go-slice</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 夜<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

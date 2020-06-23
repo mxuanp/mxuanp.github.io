@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>go-basic-goroutine-channel | 夜</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Goroutines 和 Channel 这里只是记录go的goroutine和channel的基础用法,多线程有风险，用之需谨慎。。。。ヾ(＠⌒ー⌒＠)ノ。。。&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go-basic-goroutine-channel">
+<meta property="og:url" content="https://mxuanp.github.io/2019/12/17/go-basic-goroutine-channel/index.html">
+<meta property="og:site_name" content="夜">
+<meta property="og:description" content="Goroutines 和 Channel 这里只是记录go的goroutine和channel的基础用法,多线程有风险，用之需谨慎。。。。ヾ(＠⌒ー⌒＠)ノ。。。&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mxuanp.github.io/2019/12/17/go-basic-goroutine-channel/go-pipe.png">
+<meta property="article:published_time" content="2019-12-17T06:03:00.000Z">
+<meta property="article:modified_time" content="2020-06-23T12:02:02.288Z">
+<meta property="article:author" content="夜">
+<meta property="article:tag" content="go">
+<meta property="article:tag" content="golang">
+<meta property="article:tag" content="go-basic">
+<meta property="article:tag" content="goroutine">
+<meta property="article:tag" content="go-channel">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mxuanp.github.io/2019/12/17/go-basic-goroutine-channel/go-pipe.png">
+  
+    <link rel="alternate" href="/atom.xml" title="夜" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">夜</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">思いつけば、この一生はなにを求めているんだろう</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mxuanp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-go-basic-goroutine-channel" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/17/go-basic-goroutine-channel/" class="article-date">
+  <time datetime="2019-12-17T06:03:00.000Z" itemprop="datePublished">2019-12-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/go/">go</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      go-basic-goroutine-channel
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Goroutines-和-Channel"><a href="#Goroutines-和-Channel" class="headerlink" title="Goroutines 和 Channel"></a>Goroutines 和 Channel</h1><blockquote>
+<p>这里只是记录go的goroutine和channel的基础用法,多线程有风险，用之需谨慎。。。。ヾ(＠⌒ー⌒＠)ノ。。。==========</p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="Goroutine"><a href="#Goroutine" class="headerlink" title="Goroutine"></a>Goroutine</h1><h2 id="使用方法，，，，很简单的，，，，-＠￣ー￣＠"><a href="#使用方法，，，，很简单的，，，，-＠￣ー￣＠" class="headerlink" title="使用方法，，，，很简单的，，，，(＠￣ー￣＠)"></a>使用方法，，，，很简单的，，，，(＠￣ー￣＠)</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">	......</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//用关键字go 后跟一个函数或方法，这个函数就会在新的goroutine中运行</span></span><br><span class="line"><span class="keyword">go</span> test()</span><br></pre></td></tr></table></figure>
+
+<p>来个小栗子</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//弄个动画小图标</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">go</span> spinner(<span class="number">100</span> * time.Millisecond)</span><br><span class="line">	<span class="keyword">const</span> n = <span class="number">45</span></span><br><span class="line">	fibN := fib(n)</span><br><span class="line">	fmt.Printf(<span class="string">"\rFibonacci(%d) = %d\n"</span>, n, fibN)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">spinner</span><span class="params">(delay time.Duration)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="keyword">for</span> _, r := <span class="keyword">range</span> <span class="string">`-\|/`</span> &#123;</span><br><span class="line">			fmt.Printf(<span class="string">"\r%c"</span>, r)</span><br><span class="line">			time.Sleep(delay)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fib</span><span class="params">(x <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> x &lt; <span class="number">2</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> x</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> fib(x<span class="number">-1</span>) + fib(x<span class="number">-2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>PS : main函数结束后，所有goroutine都会被直接打断，程序退出。除了主函数退出，或程序直接被终止，以及goroutine自行停止，没有其它编程方法能停止一个goroutine</p>
+</blockquote>
+<h2 id="例子：并发的Clock"><a href="#例子：并发的Clock" class="headerlink" title="例子：并发的Clock"></a>例子：并发的Clock</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//clock</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span>(</span><br><span class="line">	<span class="string">"net"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">	<span class="string">"io"</span></span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	listener, err := net.Listen(<span class="string">"tcp"</span>, <span class="string">"localhost:8000"</span>)	</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)	</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>&#123;</span><br><span class="line">		conn, err := listener.Accept()</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			log.Print(err)	</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		handleConn(conn)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handleConn</span><span class="params">(conn net.Conn)</span></span>  &#123;</span><br><span class="line">	<span class="keyword">defer</span> conn.Close()</span><br><span class="line">	<span class="keyword">for</span>&#123;</span><br><span class="line">		_, err := io.WriteString(conn, time.Now().Format(<span class="string">"15:04:05\n"</span>))</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="keyword">return</span>	</span><br><span class="line">		&#125;</span><br><span class="line">		time.Sleep(<span class="number">1</span> * time.Second)</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以看出，这个服务器一次只能接受一个连接，，</p>
+<p>可以用nc之类的工具连接看结果</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//并发的clock</span></span><br><span class="line"><span class="keyword">for</span>&#123;</span><br><span class="line">		conn, err := listener.Accept()</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			log.Print(err)	</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">    	<span class="comment">//只要这里加个go就行了</span></span><br><span class="line">		<span class="keyword">go</span> handleConn(conn)</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="例子：并发的Echo"><a href="#例子：并发的Echo" class="headerlink" title="例子：并发的Echo"></a>例子：并发的Echo</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//直接来个简单的echo</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handleConn</span><span class="params">(c net.Conn)</span></span>&#123;</span><br><span class="line">    io.Copy(c, c)</span><br><span class="line">    c.Close()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//来个复杂点的</span></span><br><span class="line"><span class="comment">//回响echo，，大写到小写。。。</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handleConn</span><span class="params">(c net.Conn)</span></span> &#123;</span><br><span class="line">	input := bufio.NewScanner(c)</span><br><span class="line">	<span class="keyword">for</span> input.Scan() &#123;</span><br><span class="line">		echo(c, input.Text(), <span class="number">1</span>*time.Second)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">echo</span><span class="params">(c net.Conn, shout <span class="keyword">string</span>, delay time.Duration)</span></span> &#123;</span><br><span class="line">	fmt.Fprintln(c, <span class="string">"\t"</span>, strings.ToUpper(shout))</span><br><span class="line">	time.Sleep(delay)</span><br><span class="line">	fmt.Fprintln(c, <span class="string">"\t"</span>, shout)</span><br><span class="line">	time.Sleep(delay)</span><br><span class="line">	fmt.Fprintln(c, <span class="string">"\t"</span>, strings.ToLower(shout))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h1><blockquote>
+<p>Channel实在goroutine之间的通信机制，她可以一个goroutine通过她向另一个goroutine发送消息</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line"><span class="comment">//这样，一个可以发送int的channel就创建好了</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//发送消息到channel</span></span><br><span class="line">ch &lt;- x</span><br><span class="line"></span><br><span class="line"><span class="comment">//从channel接收消息</span></span><br><span class="line">x := &lt;-ch</span><br><span class="line"><span class="comment">//关闭channel</span></span><br><span class="line"><span class="built_in">close</span>(ch)</span><br></pre></td></tr></table></figure>
+
+<h3 id="不带缓存的Channel"><a href="#不带缓存的Channel" class="headerlink" title="不带缓存的Channel"></a>不带缓存的Channel</h3><blockquote>
+<p>ch := make(chan int) 这样就声明初始化了一个不带缓存的Channel，不带缓存的Channel在执行发送操作后会堵塞发送者的goroutine， 直到发送的值被接收，相反，如果有goroutine在执行接收操作，也会堵塞，直到发送方向Channel发送数据</p>
+</blockquote>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><blockquote>
+<p>用channel来同步goroutine的工作，让主goroutine等待后台goroutine完成工作</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//netcat第一版，就是网络版cat</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"net"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"log"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"os"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"io"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	conn, err := net.Dial(<span class="string">"tcp"</span>, <span class="string">"localhost:8000"</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">	done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;)</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">		io.Copy(os.Stdout, conn)</span><br><span class="line">		log.Println(<span class="string">"done"</span>)</span><br><span class="line">		done &lt;- <span class="keyword">struct</span>&#123;&#125;&#123;&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	mustCopy(conn, os.Stdin)</span><br><span class="line">	conn.Close()</span><br><span class="line">	&lt;- done</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">mustCopy</span><span class="params">(dst io.Writer, src io.Reader)</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> _, err := io.Copy(dst, src); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="串联的Channel（Pipeline）。。。就是管道。。。━━-￣ー￣-━━"><a href="#串联的Channel（Pipeline）。。。就是管道。。。━━-￣ー￣-━━" class="headerlink" title="串联的Channel（Pipeline）。。。就是管道。。。━━(￣ー￣*|||━━"></a>串联的Channel（Pipeline）。。。就是管道。。。━━(￣ー￣*|||━━</h2><blockquote>
+<p>用Channel将多个goroutine连接起来</p>
+</blockquote>
+<img src="/2019/12/17/go-basic-goroutine-channel/go-pipe.png" class="" title="管道">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//管道</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">//串串</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	naturals := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	squares := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> x := <span class="number">0</span>; x&lt;<span class="number">100</span> ; x++ &#123;</span><br><span class="line">			naturals &lt;- x</span><br><span class="line">		&#125;</span><br><span class="line">        </span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			x, ok := &lt;-naturals</span><br><span class="line">			<span class="keyword">if</span> !ok &#123;</span><br><span class="line">				<span class="keyword">break</span>	</span><br><span class="line">			&#125;</span><br><span class="line">			squares &lt;- x * x</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">close</span>(squares)</span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		fmt.Println(&lt;-squares)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Channel在没有被引用后会被Go的gc回收，所以可以不用手动关闭</p>
+<p>和文件不同，文件不用后一定要手动调用对应的Close方法，否则后造成内存泄漏，资源的耗费</p>
+</blockquote>
+<h2 id="单方向Channel"><a href="#单方向Channel" class="headerlink" title="单方向Channel"></a>单方向Channel</h2><blockquote>
+<p>即只能接收，或只能发送的Channel</p>
+<p>双方向的Channel可以转换为单方向的Channel，但不可以将单方向的Channel转换为双方向的或转换为另一个方向</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ch := <span class="built_in">make</span>(in &lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)<span class="comment">//这样声明一个只能接收int的Channel</span></span><br><span class="line"></span><br><span class="line">ch := <span class="built_in">make</span>(out <span class="keyword">chan</span>&lt;- <span class="keyword">int</span>)<span class="comment">//这样声明一个只能发送int的Channel</span></span><br></pre></td></tr></table></figure>
+
+<p>举个栗子。。。。。。o(<em>^▽^</em>)┛。。。。。。。。。。。。。。=======</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//管道</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	naturals := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	squares := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">    <span class="comment">//包含了隐式转换</span></span><br><span class="line">	<span class="keyword">go</span> counter(naturals)</span><br><span class="line">	<span class="keyword">go</span> squarer(squares, naturals)</span><br><span class="line">	printer(squares)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">counter</span><span class="params">(out <span class="keyword">chan</span>&lt;- <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> x := <span class="number">0</span>; x &lt;= <span class="number">100</span>; x++ &#123;</span><br><span class="line">		out &lt;- x</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">close</span>(out)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">squarer</span><span class="params">(out <span class="keyword">chan</span>&lt;- <span class="keyword">int</span>, in &lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> v := <span class="keyword">range</span> in &#123;</span><br><span class="line">		out &lt;- v * v</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">close</span>(out)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printer</span><span class="params">(in &lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> v := <span class="keyword">range</span> in &#123;</span><br><span class="line">		fmt.Println(v)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="带缓存的Channel"><a href="#带缓存的Channel" class="headerlink" title="带缓存的Channel"></a>带缓存的Channel</h2><blockquote>
+<p>带缓存的Channel内部持有一个元素的队列，队列的最大容量在make时指定</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">string</span>, <span class="number">3</span>)<span class="comment">//这样就声明初始化了一个带缓存的Channel，缓存容量为3</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>向有缓存的Channel发送数据，直到Channel的缓存占满为止，发送操作不会阻塞goroutine</p>
+<p>可以使用内置函数cap查看Channel的容量，内置函数len查看Channel的缓存区的数据量</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(<span class="built_in">cap</span>(ch))<span class="comment">//查看容量</span></span><br><span class="line"></span><br><span class="line">fmt.Println(<span class="built_in">len</span>(ch))<span class="comment">//查看数据量</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="看一个栗子：。。。。-。・∀・-ノ。。。。。"><a href="#看一个栗子：。。。。-。・∀・-ノ。。。。。" class="headerlink" title="看一个栗子：。。。。(。・∀・)ノ。。。。。========"></a>看一个栗子：。。。。(。・∀・)ノ。。。。。========</h2><blockquote>
+<p>这个栗子请求反应最快的镜像，并打印</p>
+<p>如果使用无缓存的Channel，那么将有两个groutines没有接收而被卡住，这种情况称为goroutines泄漏，BUG。和有垃圾变量不一样，泄漏的groutine是无法被gc回收的，因此确保每个不再需要的goroutine能正常退出是很重要的 </p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">mirroredQuery</span><span class="params">()</span> <span class="title">string</span></span>&#123;</span><br><span class="line">    resp := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">string</span>, <span class="number">3</span>)</span><br><span class="line">    <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span>&#123;resp &lt;- request(<span class="string">"asia.gopl.io"</span>)&#125;()</span><br><span class="line">    <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span>&#123;resp &lt;- request(<span class="string">"europe.gopl.io"</span>)&#125;()</span><br><span class="line">    <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span>&#123;resp &lt;- request(<span class="string">"americas.gopl.io"</span>)&#125;()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">request</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .........</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>关于goroutines和Channel,可以想象一下工厂生产线</p>
+</blockquote>
+<h2 id="来弄个爬虫。。。。-━━-￣ー￣-━━。。。。。。。。。。。。"><a href="#来弄个爬虫。。。。-━━-￣ー￣-━━。。。。。。。。。。。。" class="headerlink" title="来弄个爬虫。。。。====━━(￣ー￣*|||━━。。。。。。。。。。。。"></a>来弄个爬虫。。。。====━━(￣ー￣*|||━━。。。。。。。。。。。。</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line"></span><br><span class="line">	<span class="string">"gopl.io/ch5/links"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	worklist := <span class="built_in">make</span>(<span class="keyword">chan</span> []<span class="keyword">string</span>)</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span>&#123;worklist &lt;- os.Args[<span class="number">1</span>:]&#125;()</span><br><span class="line">	<span class="keyword">var</span> n <span class="keyword">int</span></span><br><span class="line">	n++</span><br><span class="line">	seen := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">bool</span>)</span><br><span class="line">	<span class="keyword">for</span> ;n&gt;<span class="number">0</span>;n--&#123;</span><br><span class="line">		list := &lt;- worklist</span><br><span class="line">		<span class="keyword">for</span> _,link := <span class="keyword">range</span> list&#123;</span><br><span class="line">			<span class="keyword">if</span>(!seen[link])&#123;</span><br><span class="line">				seen[link]=<span class="literal">true</span></span><br><span class="line">				n++</span><br><span class="line">				<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(link <span class="keyword">string</span>)</span></span>&#123;</span><br><span class="line">					worklist &lt;- crawl(link)</span><br><span class="line">				&#125;(link)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> tokens = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;, <span class="number">20</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">crawl</span><span class="params">(url <span class="keyword">string</span>)</span> []<span class="title">string</span></span> &#123;</span><br><span class="line">	fmt.Println(url)</span><br><span class="line">	tokens &lt;- <span class="keyword">struct</span>&#123;&#125;&#123;&#125;</span><br><span class="line">	list, err := links.Extract(url)</span><br><span class="line">	&lt;-tokens</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Print(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> list</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><blockquote>
+<p>go的select和switch类似，但是每个case必须是通信操作，发送或接收</p>
+<p>PS：在select中是nil的channel永远不会被select到，因而可以使用nil激活或禁用case</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span>&#123;</span><br><span class="line">    <span class="keyword">case</span> &lt;-ch1:</span><br><span class="line">    <span class="comment">//.........</span></span><br><span class="line">    <span class="keyword">case</span> x:=&lt;-ch2:</span><br><span class="line">    <span class="comment">//.........</span></span><br><span class="line">    <span class="keyword">case</span> ch3&lt;-y:</span><br><span class="line">    <span class="comment">//.........</span></span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">    <span class="comment">//.........</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="轮询Channel"><a href="#轮询Channel" class="headerlink" title="轮询Channel"></a>轮询Channel</h2><blockquote>
+<p>有时候需要从Channel接收值或发送，但又不能堵塞，特别是Channel没有准备好读写时，select就可以实现这样的功能，select的default可以用来设置当其它的操作都不能马上被处理时，执行的逻辑</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span>&#123;</span><br><span class="line">    <span class="keyword">case</span> &lt;-abort:</span><br><span class="line">    fmt.Println(<span class="string">"Launch abort"</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">    	........</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Goroutines和线程"><a href="#Goroutines和线程" class="headerlink" title="Goroutines和线程"></a>Goroutines和线程</h2><h3 id="动态栈"><a href="#动态栈" class="headerlink" title="动态栈"></a>动态栈</h3><blockquote>
+<p>每个OS线程都有一个固定的内存块(一般是2MB)作为栈， 但是2MB对一个Goroutine实在有些大，且固定大小的栈不方便修改。Goroutine以一个小的栈开始，一般只需要2KB， 且会根据需要动态地伸缩，最大值为1GB，当然，大多数时候不需要这么的栈</p>
+</blockquote>
+<h3 id="Goroutine调度"><a href="#Goroutine调度" class="headerlink" title="Goroutine调度"></a>Goroutine调度</h3><blockquote>
+<p>Go有自己的运行时调度，例如n：m调度，这种调度，不是系统级的，因而Goroutine的调度代价比调度线程小的多</p>
+</blockquote>
+<h4 id="GOMAXPROCS"><a href="#GOMAXPROCS" class="headerlink" title="GOMAXPROCS"></a>GOMAXPROCS</h4><blockquote>
+<p>Go的调度器使用GOMAXPROCS的环境变量来决定会有多少个操作系统的线程来调度</p>
+<p>所以可以使用GOMACPROCS这个环境变量来显示地控制</p>
+</blockquote>
+<h2 id="Goroutine没有ID号"><a href="#Goroutine没有ID号" class="headerlink" title="Goroutine没有ID号"></a>Goroutine没有ID号</h2><blockquote>
+<p>大多数支持多线程的操作系统和语言中，当前线程会有一个独特的身份（id），但是Groutine是没有的，且是设计上故意没有的，怕thread-locale storage 被滥用</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mxuanp.github.io/2019/12/17/go-basic-goroutine-channel/" data-id="ckbrwwf43000o4gomh4qzgx5h" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-channel/" rel="tag">go-channel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/" rel="tag">golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/goroutine/" rel="tag">goroutine</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/23/go-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          go-并发编程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/16/%E5%9B%9E%E9%94%85%E9%A6%99%E8%BE%A3%E7%8C%AA%E8%B9%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">回锅香辣猪蹄</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/go/">-go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/chef/">chef</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hello/">hello</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-golang-algorithm-%E7%AE%97%E6%B3%95-sort/" rel="tag">-go -golang -algorithm -算法 -sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RPC/" rel="tag">RPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cgo/" rel="tag">cgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gRPC/" rel="tag">gRPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-baisc-%E5%85%A5%E9%97%A8/" rel="tag">go-baisc-入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E5%87%BD%E6%95%B0/" rel="tag">go-basic-函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" rel="tag">go-basic-接口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">go-basic-数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%96%B9%E6%B3%95/" rel="tag">go-basic-方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" rel="tag">go-basic-程序结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-channel/" rel="tag">go-channel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-error/" rel="tag">go-error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-tool/" rel="tag">go-tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golamg/" rel="tag">golamg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/" rel="tag">golang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/goroutine/" rel="tag">goroutine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/" rel="tag">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/" rel="tag">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reflect/" rel="tag">reflect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slice/" rel="tag">slice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/start/" rel="tag">start</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/strings/" rel="tag">strings</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/websocket/" rel="tag">websocket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%AB%E9%94%85/" rel="tag">火锅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8C%AA%E8%B9%84/" rel="tag">猪蹄</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2/" rel="tag">面</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/go-golang-algorithm-%E7%AE%97%E6%B3%95-sort/" style="font-size: 10px;">-go -golang -algorithm -算法 -sort</a> <a href="/tags/RPC/" style="font-size: 10px;">RPC</a> <a href="/tags/cgo/" style="font-size: 10px;">cgo</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/gRPC/" style="font-size: 10px;">gRPC</a> <a href="/tags/go/" style="font-size: 20px;">go</a> <a href="/tags/go-baisc-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">go-baisc-入门</a> <a href="/tags/go-basic/" style="font-size: 16px;">go-basic</a> <a href="/tags/go-basic-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">go-basic-函数</a> <a href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" style="font-size: 10px;">go-basic-接口</a> <a href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">go-basic-数据类型</a> <a href="/tags/go-basic-%E6%96%B9%E6%B3%95/" style="font-size: 10px;">go-basic-方法</a> <a href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" style="font-size: 10px;">go-basic-程序结构</a> <a href="/tags/go-channel/" style="font-size: 10px;">go-channel</a> <a href="/tags/go-error/" style="font-size: 10px;">go-error</a> <a href="/tags/go-tool/" style="font-size: 10px;">go-tool</a> <a href="/tags/golamg/" style="font-size: 10px;">golamg</a> <a href="/tags/golang/" style="font-size: 18px;">golang</a> <a href="/tags/goroutine/" style="font-size: 10px;">goroutine</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/life/" style="font-size: 14px;">life</a> <a href="/tags/reflect/" style="font-size: 10px;">reflect</a> <a href="/tags/review/" style="font-size: 12px;">review</a> <a href="/tags/slice/" style="font-size: 10px;">slice</a> <a href="/tags/start/" style="font-size: 10px;">start</a> <a href="/tags/strings/" style="font-size: 10px;">strings</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">并发编程</a> <a href="/tags/%E7%81%AB%E9%94%85/" style="font-size: 10px;">火锅</a> <a href="/tags/%E7%8C%AA%E8%B9%84/" style="font-size: 10px;">猪蹄</a> <a href="/tags/%E9%9D%A2/" style="font-size: 10px;">面</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/06/23/hello-world/">Hello World - 夜 - Hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/21/Go%E8%AF%AD%E8%A8%80%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/">Go语言高级编程学习笔记-01</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/15/Go%E8%AF%AD%E8%A8%80%E6%A0%87%E5%87%86%E5%BA%93-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-1/">Go语言标准库-读书笔记-1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/07/%E5%9B%9E%E9%A1%BE-Go%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/">回顾-Go类型系统</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/20/go-slice/">go-slice</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 夜<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>go-basic-函数 | 夜</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="到函数了呢&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;(～o￣▽￣)～o 。。。滚来滚去……o～(＿△＿o&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go-basic-函数">
+<meta property="og:url" content="https://mxuanp.github.io/2019/12/10/go-basic-%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="夜">
+<meta property="og:description" content="到函数了呢&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;(～o￣▽￣)～o 。。。滚来滚去……o～(＿△＿o&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-12-10T06:47:07.000Z">
+<meta property="article:modified_time" content="2020-06-23T12:02:02.288Z">
+<meta property="article:author" content="夜">
+<meta property="article:tag" content="go">
+<meta property="article:tag" content="golang">
+<meta property="article:tag" content="go-basic">
+<meta property="article:tag" content="go-basic-函数">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="夜" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">夜</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">思いつけば、この一生はなにを求めているんだろう</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mxuanp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-go-basic-函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/10/go-basic-%E5%87%BD%E6%95%B0/" class="article-date">
+  <time datetime="2019-12-10T06:47:07.000Z" itemprop="datePublished">2019-12-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/go/">go</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      go-basic-函数
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="到函数了呢-～o￣▽￣-～o-。。。滚来滚去……o～-＿△＿o"><a href="#到函数了呢-～o￣▽￣-～o-。。。滚来滚去……o～-＿△＿o" class="headerlink" title="到函数了呢===========(～o￣▽￣)～o 。。。滚来滚去……o～(＿△＿o==============="></a>到函数了呢===========(～o￣▽￣)～o 。。。滚来滚去……o～(＿△＿o===============</h1><a id="more"></a>
+
+<h2 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h2><blockquote>
+<p>func name(parameter-list) (result-list){</p>
+<p>​    body………………</p>
+<p>}</p>
+</blockquote>
+<blockquote>
+<p>go的函数可以是一个类型,但不可以作为map的key，也不可以相互比较</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">func</span><span class="params">(a, b <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line"><span class="keyword">return</span> a+b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line">add(<span class="number">1</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>函数名称首字母大写就可以让其它包使用，和变量一样呢。。。。。ヾ(´∀`o)+</p>
+</blockquote>
+<blockquote>
+<p>go函数的递归所需的栈可以根据需要增加（初始时很小），所以不必考虑溢出和安全问题，（把机子内存撑爆另当别论===ㄟ( ▔, ▔ )ㄏ======）</p>
+</blockquote>
+<h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><blockquote>
+<p>go的函数和c类似，但是可以多个返回值，型参是值拷贝，要改值需要传引用或指针</p>
+<p>go的返回值有个神奇的地方</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(a, b <span class="keyword">int</span>)</span> <span class="params">(c <span class="keyword">int</span>)</span></span>&#123;</span><br><span class="line">    c = a+b</span><br><span class="line">    <span class="keyword">return</span>  <span class="comment">//等同于 return c  ===&gt;即在result-list指定返回值名称后，可以直接使用，在有很多返回值的时候很有用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><blockquote>
+<p>有点像java类的内部类，在某个函数中定义的匿名函数可以直接访问它的内部变量</p>
+<p>从结果可以看出，匿名函数保存着外部函数变量的引用，这就是函数值属于引用和不可以比较的原因</p>
+<p>Go实现函数值的方式是闭包</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//squares </span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span>(</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	f := squares()</span><br><span class="line">	fmt.Println(f()) <span class="comment">//1</span></span><br><span class="line">	fmt.Println(f()) <span class="comment">//4</span></span><br><span class="line">	fmt.Println(f()) <span class="comment">//9</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">squares</span><span class="params">()</span> <span class="title">func</span><span class="params">()</span> <span class="title">int</span></span>  &#123;</span><br><span class="line">	<span class="keyword">var</span> x <span class="keyword">int</span></span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">()</span> <span class="title">int</span></span>&#123;</span><br><span class="line">		x++</span><br><span class="line">		<span class="keyword">return</span> x*x</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="匿名函数里词法作用域的陷阱-＜（＾－＾）＞"><a href="#匿名函数里词法作用域的陷阱-＜（＾－＾）＞" class="headerlink" title="匿名函数里词法作用域的陷阱====＜（＾－＾）＞============"></a>匿名函数里词法作用域的陷阱====＜（＾－＾）＞============</h3><blockquote>
+<p>由于匿名函数会持有外部函数变量的引用（不是值），所以循环时如果直接使用d，那么最后rmdirs里所有匿名函数持有的都会是最后一次循环时d的值</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rmdirs []<span class="function"><span class="keyword">func</span></span></span><br><span class="line"><span class="keyword">for</span> _,d := <span class="keyword">range</span> tempDirs()&#123;</span><br><span class="line">    dir := d <span class="comment">//这里必须有</span></span><br><span class="line">    os.MkdirAll(dir, <span class="number">0755</span>)</span><br><span class="line">    rmdirs = <span class="built_in">append</span>(rmdirs, <span class="function"><span class="keyword">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">        os.RemoveAll(dir)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h2><blockquote>
+<p>可变参数使用…声明，将会被看作一个slice</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(vals...<span class="keyword">int</span>)</span><span class="title">int</span></span>&#123;</span><br><span class="line">    total := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> _,val := <span class="keyword">range</span> vals&#123;</span><br><span class="line">        total += val</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> total</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Deferred函数"><a href="#Deferred函数" class="headerlink" title="Deferred函数"></a>Deferred函数</h2><blockquote>
+<p>defer声明的函数会在包含该defer语句的函数执行完后执行</p>
+<p>defer声明的函数一定会被执行，即使运行中出现panic导致程序异常，在程序退出前也会执行（除非，电脑突然没电这样的。。==ㄟ( ▔, ▔ )ㄏ======）</p>
+<p>PS：有那么一点点像java类的finallize=====(～￣(OO)￣)ブ</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">title</span><span class="params">(url <span class="keyword">string</span>)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">	resp, err := http.Get(url)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> err	</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> resp.Body.Close() <span class="comment">//这里最后一定会被执行</span></span><br><span class="line">	ct := resp.Header.Get(<span class="string">"Content-Type"</span>)</span><br><span class="line">	<span class="keyword">if</span> ct != <span class="string">"text/html"</span> &amp;&amp; !strings.HasPrefix(ct,<span class="string">"text/html;"</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> fmt.Errorf(<span class="string">"%s has type %s, not text/html"</span>, url, ct)	</span><br><span class="line">	&#125;</span><br><span class="line">	doc, err := html.Parse(resp.Body)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line">	visitNode := <span class="function"><span class="keyword">func</span><span class="params">(n *html.Node)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span> n.Type == html.ElementNode &amp;&amp; n.Data == <span class="string">"title"</span> &amp;&amp; n.FirstChild !=<span class="literal">nil</span>&#123;</span><br><span class="line">			fmt.Println(n.FirstChild.Data)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	forEachNode(doc, visitNode, <span class="literal">nil</span>)</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Error和Panic"><a href="#Error和Panic" class="headerlink" title="Error和Panic"></a>Error和Panic</h2><blockquote>
+<p>这里不详细说</p>
+<p>Error，是一个interface，只有Error() string一个接口，用于返回错误信息</p>
+<p>Panic,异常，有可能会导致程序无法继续运行，可以recover处理，使程序更加健壮</p>
+</blockquote>
+<blockquote>
+<p>go对Error的处理风格是先处理一系列Error，然后再是正常的逻辑</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mxuanp.github.io/2019/12/10/go-basic-%E5%87%BD%E6%95%B0/" data-id="ckbrwwf40000h4gom161wg4o7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic-%E5%87%BD%E6%95%B0/" rel="tag">go-basic-函数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/" rel="tag">golang</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/12/12/go-basic-%E6%96%B9%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          go-basic-方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/10/go-basic-json%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">go-basic-json的使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/go/">-go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/chef/">chef</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hello/">hello</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-golang-algorithm-%E7%AE%97%E6%B3%95-sort/" rel="tag">-go -golang -algorithm -算法 -sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RPC/" rel="tag">RPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cgo/" rel="tag">cgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gRPC/" rel="tag">gRPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-baisc-%E5%85%A5%E9%97%A8/" rel="tag">go-baisc-入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E5%87%BD%E6%95%B0/" rel="tag">go-basic-函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" rel="tag">go-basic-接口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">go-basic-数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%96%B9%E6%B3%95/" rel="tag">go-basic-方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" rel="tag">go-basic-程序结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-channel/" rel="tag">go-channel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-error/" rel="tag">go-error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-tool/" rel="tag">go-tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golamg/" rel="tag">golamg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/" rel="tag">golang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/goroutine/" rel="tag">goroutine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/" rel="tag">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/" rel="tag">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reflect/" rel="tag">reflect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slice/" rel="tag">slice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/start/" rel="tag">start</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/strings/" rel="tag">strings</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/websocket/" rel="tag">websocket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%AB%E9%94%85/" rel="tag">火锅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8C%AA%E8%B9%84/" rel="tag">猪蹄</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2/" rel="tag">面</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/go-golang-algorithm-%E7%AE%97%E6%B3%95-sort/" style="font-size: 10px;">-go -golang -algorithm -算法 -sort</a> <a href="/tags/RPC/" style="font-size: 10px;">RPC</a> <a href="/tags/cgo/" style="font-size: 10px;">cgo</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/gRPC/" style="font-size: 10px;">gRPC</a> <a href="/tags/go/" style="font-size: 20px;">go</a> <a href="/tags/go-baisc-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">go-baisc-入门</a> <a href="/tags/go-basic/" style="font-size: 16px;">go-basic</a> <a href="/tags/go-basic-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">go-basic-函数</a> <a href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" style="font-size: 10px;">go-basic-接口</a> <a href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">go-basic-数据类型</a> <a href="/tags/go-basic-%E6%96%B9%E6%B3%95/" style="font-size: 10px;">go-basic-方法</a> <a href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" style="font-size: 10px;">go-basic-程序结构</a> <a href="/tags/go-channel/" style="font-size: 10px;">go-channel</a> <a href="/tags/go-error/" style="font-size: 10px;">go-error</a> <a href="/tags/go-tool/" style="font-size: 10px;">go-tool</a> <a href="/tags/golamg/" style="font-size: 10px;">golamg</a> <a href="/tags/golang/" style="font-size: 18px;">golang</a> <a href="/tags/goroutine/" style="font-size: 10px;">goroutine</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/life/" style="font-size: 14px;">life</a> <a href="/tags/reflect/" style="font-size: 10px;">reflect</a> <a href="/tags/review/" style="font-size: 12px;">review</a> <a href="/tags/slice/" style="font-size: 10px;">slice</a> <a href="/tags/start/" style="font-size: 10px;">start</a> <a href="/tags/strings/" style="font-size: 10px;">strings</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">并发编程</a> <a href="/tags/%E7%81%AB%E9%94%85/" style="font-size: 10px;">火锅</a> <a href="/tags/%E7%8C%AA%E8%B9%84/" style="font-size: 10px;">猪蹄</a> <a href="/tags/%E9%9D%A2/" style="font-size: 10px;">面</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/06/23/hello-world/">Hello World - 夜 - Hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/21/Go%E8%AF%AD%E8%A8%80%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/">Go语言高级编程学习笔记-01</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/15/Go%E8%AF%AD%E8%A8%80%E6%A0%87%E5%87%86%E5%BA%93-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-1/">Go语言标准库-读书笔记-1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/07/%E5%9B%9E%E9%A1%BE-Go%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/">回顾-Go类型系统</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/20/go-slice/">go-slice</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 夜<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

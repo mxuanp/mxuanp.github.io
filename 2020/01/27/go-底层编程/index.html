@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>go-底层编程 | 夜</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Go的底层编程 使用CGO拥抱c，，，…(*￣０￣)ノ[等等我…]&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;…………….">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go-底层编程">
+<meta property="og:url" content="https://mxuanp.github.io/2020/01/27/go-%E5%BA%95%E5%B1%82%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="夜">
+<meta property="og:description" content="Go的底层编程 使用CGO拥抱c，，，…(*￣０￣)ノ[等等我…]&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;…………….">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mxuanp.github.io/2020/01/27/go-%E5%BA%95%E5%B1%82%E7%BC%96%E7%A8%8B/gosize.png">
+<meta property="article:published_time" content="2020-01-27T07:47:57.000Z">
+<meta property="article:modified_time" content="2020-06-23T12:02:02.288Z">
+<meta property="article:author" content="夜">
+<meta property="article:tag" content="go">
+<meta property="article:tag" content="golang">
+<meta property="article:tag" content="cgo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mxuanp.github.io/2020/01/27/go-%E5%BA%95%E5%B1%82%E7%BC%96%E7%A8%8B/gosize.png">
+  
+    <link rel="alternate" href="/atom.xml" title="夜" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">夜</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">思いつけば、この一生はなにを求めているんだろう</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mxuanp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-go-底层编程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/27/go-%E5%BA%95%E5%B1%82%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time datetime="2020-01-27T07:47:57.000Z" itemprop="datePublished">2020-01-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/go/">go</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      go-底层编程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Go的底层编程"><a href="#Go的底层编程" class="headerlink" title="Go的底层编程"></a>Go的底层编程</h1><blockquote>
+<p>使用CGO拥抱c，，，…(*￣０￣)ノ[等等我…]====================…………….</p>
+</blockquote>
+<a id="more"></a>
+
+<blockquote>
+<p>PS：真正需要使用复杂且性能高的底层接口时，才使用CGO</p>
+<p>没什么特殊需要，使用 os/exec调用子进程就行了，当然，会产生依赖</p>
+</blockquote>
+<h2 id="unsafe包"><a href="#unsafe包" class="headerlink" title="unsafe包"></a>unsafe包</h2><blockquote>
+<p>底层的包，和操作系统紧密相关</p>
+</blockquote>
+<img src="/2020/01/27/go-%E5%BA%95%E5%B1%82%E7%BC%96%E7%A8%8B/gosize.png" class="" title="go的数据类型所占的字节大小">
+
+<blockquote>
+<p>如果有一天需要丧心病狂的优化， 那么这个就有用了</p>
+</blockquote>
+<h2 id="cgo"><a href="#cgo" class="headerlink" title="cgo"></a>cgo</h2><p>来个栗子。。。。(๑•̀ㅂ•́)و✧……………………一个简易的压缩程序</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//bzip2.c</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bzlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bz2compress</span><span class="params">(bz_stream *s, <span class="keyword">int</span> action, <span class="keyword">char</span> *in, <span class="keyword">unsigned</span> *inlen, <span class="keyword">char</span> *out, <span class="keyword">unsigned</span> *outlen)</span></span>&#123;</span><br><span class="line">    s-&gt;next_in = in;</span><br><span class="line">    s-&gt;avail_in = *inlen;</span><br><span class="line">    s-&gt;next_out = out;</span><br><span class="line">    s-&gt;avail_out = *outlen;</span><br><span class="line">    <span class="keyword">int</span> r = BZ2_bzCompress(s, action);</span><br><span class="line">    *inlen -= s-&gt;avail_in;</span><br><span class="line">    *outlen -= a-&gt;avail_out;</span><br><span class="line">    s-&gt;next_in = s-&gt;next_out = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后是go的代码</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面是给cgo使用的特殊参数， 相应的会传给c编译器</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">#cgo CFLAGS: -I/usr/include</span></span><br><span class="line"><span class="comment">#cgo LDFLAGS: -L/usr/lib -lbz2</span></span><br><span class="line"><span class="comment">#include &lt;bzlib.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></span><br><span class="line"><span class="comment">bz_stream* bz2alloc() &#123;return calloc(1, sizeof(bz_stream));&#125;</span></span><br><span class="line"><span class="comment">int bz2compress(bz_stream *s, int action, char *in, unsigned *inlen, char *out, unsigned *outlen);</span></span><br><span class="line"><span class="comment">void bz2free(bz_stream* s)&#123;free(s);&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"C"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span>(</span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">    <span class="string">"unsafe"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> writer <span class="keyword">struct</span>&#123;</span><br><span class="line">    w io.Writer</span><br><span class="line">    stream *C.bz_stream</span><br><span class="line">    outbuf [<span class="number">64</span>*<span class="number">1024</span>]<span class="keyword">byte</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewWriter</span><span class="params">(out io.Writer)</span> <span class="title">io</span>.<span class="title">WriteCloser</span></span> &#123;</span><br><span class="line">    <span class="keyword">const</span> blockSize = <span class="number">9</span></span><br><span class="line">    <span class="keyword">const</span> verbosity = <span class="number">0</span></span><br><span class="line">    <span class="keyword">const</span> workFactor = <span class="number">30</span></span><br><span class="line">    w := &amp;writer&#123;w: out, stream: C.bz2alloc()&#125;</span><br><span class="line">    C.BZ2_bzCompressInit(w.stream, blockSize, verbosity, workFactor)</span><br><span class="line">    <span class="keyword">return</span> w</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(w *writer)</span> <span class="title">Write</span><span class="params">(data []<span class="keyword">byte</span>)</span> <span class="params">(<span class="keyword">int</span>, err)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> w.stream == <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="built_in">panic</span>(<span class="string">"closed"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> total <span class="keyword">int</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">len</span>(data) &gt; <span class="number">0</span> &#123;</span><br><span class="line">        inlen, outlen := C.<span class="keyword">uint</span>(<span class="built_in">len</span>(data)), C.<span class="keyword">uint</span>(<span class="built_in">cap</span>(w.outbuf))</span><br><span class="line">        C.bz2compress(w.stream, C.BZ_RUN, (*C.char)(unsafe.Pointer(&amp;data[<span class="number">0</span>])), &amp;inlen, (*C.char)(unsafe.Pointer(&amp;w.outbuf)), &amp;outlen)</span><br><span class="line">        total += <span class="keyword">int</span>(inlen)</span><br><span class="line">        data = data[inlen:]</span><br><span class="line">        <span class="keyword">if</span> _, err := w.w.Write(w.outbuf[:outlen]); err != <span class="literal">nil</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> total, err</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> total, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(w *writer)</span> <span class="title">Close</span><span class="params">()</span> <span class="title">error</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> w.stream == <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="built_in">panic</span>(<span class="string">"closed"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">        C.BZ2_bzCompressEnd(w.stream)</span><br><span class="line">        C.bz2free(w.stream)</span><br><span class="line">        w.stream = <span class="literal">nil</span></span><br><span class="line">    &#125;()</span><br><span class="line">    <span class="keyword">for</span> &#123;</span><br><span class="line">        inlen, outlen := C.<span class="keyword">uint</span>(<span class="number">0</span>), C.<span class="keyword">uint</span>(<span class="built_in">cap</span>(w.outbuf))</span><br><span class="line">        r := C.bz2compress(w.stream, C.BZ_FINISH, <span class="literal">nil</span>, &amp;inlen, (*C.char)(unsafe.Pointer(&amp;w.outbuf)), &amp;outlen)</span><br><span class="line">        <span class="keyword">if</span> _, err := w.w.Write(w.outbuf[:outlen]); err != <span class="literal">nil</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> err</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> r == C.BZ_STREAM_END &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>PS：这里只有CGO的一小部分， 还有很多东西</p>
+<p>又：不是必要，不需要使用，不要过早优化</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mxuanp.github.io/2020/01/27/go-%E5%BA%95%E5%B1%82%E7%BC%96%E7%A8%8B/" data-id="ckbrwwf61003j4gom4ljf8ebn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cgo/" rel="tag">cgo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/" rel="tag">golang</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/28/Go-Review/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Go-Review
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/26/go-%E5%8F%8D%E5%B0%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">go-反射</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/go/">-go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/chef/">chef</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hello/">hello</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-golang-algorithm-%E7%AE%97%E6%B3%95-sort/" rel="tag">-go -golang -algorithm -算法 -sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RPC/" rel="tag">RPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cgo/" rel="tag">cgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gRPC/" rel="tag">gRPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-baisc-%E5%85%A5%E9%97%A8/" rel="tag">go-baisc-入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E5%87%BD%E6%95%B0/" rel="tag">go-basic-函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" rel="tag">go-basic-接口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">go-basic-数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%96%B9%E6%B3%95/" rel="tag">go-basic-方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" rel="tag">go-basic-程序结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-channel/" rel="tag">go-channel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-error/" rel="tag">go-error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-tool/" rel="tag">go-tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golamg/" rel="tag">golamg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/" rel="tag">golang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/goroutine/" rel="tag">goroutine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/" rel="tag">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/" rel="tag">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reflect/" rel="tag">reflect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slice/" rel="tag">slice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/start/" rel="tag">start</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/strings/" rel="tag">strings</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/websocket/" rel="tag">websocket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%AB%E9%94%85/" rel="tag">火锅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8C%AA%E8%B9%84/" rel="tag">猪蹄</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2/" rel="tag">面</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/go-golang-algorithm-%E7%AE%97%E6%B3%95-sort/" style="font-size: 10px;">-go -golang -algorithm -算法 -sort</a> <a href="/tags/RPC/" style="font-size: 10px;">RPC</a> <a href="/tags/cgo/" style="font-size: 10px;">cgo</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/gRPC/" style="font-size: 10px;">gRPC</a> <a href="/tags/go/" style="font-size: 20px;">go</a> <a href="/tags/go-baisc-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">go-baisc-入门</a> <a href="/tags/go-basic/" style="font-size: 16px;">go-basic</a> <a href="/tags/go-basic-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">go-basic-函数</a> <a href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" style="font-size: 10px;">go-basic-接口</a> <a href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">go-basic-数据类型</a> <a href="/tags/go-basic-%E6%96%B9%E6%B3%95/" style="font-size: 10px;">go-basic-方法</a> <a href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" style="font-size: 10px;">go-basic-程序结构</a> <a href="/tags/go-channel/" style="font-size: 10px;">go-channel</a> <a href="/tags/go-error/" style="font-size: 10px;">go-error</a> <a href="/tags/go-tool/" style="font-size: 10px;">go-tool</a> <a href="/tags/golamg/" style="font-size: 10px;">golamg</a> <a href="/tags/golang/" style="font-size: 18px;">golang</a> <a href="/tags/goroutine/" style="font-size: 10px;">goroutine</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/life/" style="font-size: 14px;">life</a> <a href="/tags/reflect/" style="font-size: 10px;">reflect</a> <a href="/tags/review/" style="font-size: 12px;">review</a> <a href="/tags/slice/" style="font-size: 10px;">slice</a> <a href="/tags/start/" style="font-size: 10px;">start</a> <a href="/tags/strings/" style="font-size: 10px;">strings</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">并发编程</a> <a href="/tags/%E7%81%AB%E9%94%85/" style="font-size: 10px;">火锅</a> <a href="/tags/%E7%8C%AA%E8%B9%84/" style="font-size: 10px;">猪蹄</a> <a href="/tags/%E9%9D%A2/" style="font-size: 10px;">面</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/06/23/hello-world/">Hello World - 夜 - Hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/21/Go%E8%AF%AD%E8%A8%80%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/">Go语言高级编程学习笔记-01</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/15/Go%E8%AF%AD%E8%A8%80%E6%A0%87%E5%87%86%E5%BA%93-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-1/">Go语言标准库-读书笔记-1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/07/%E5%9B%9E%E9%A1%BE-Go%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/">回顾-Go类型系统</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/20/go-slice/">go-slice</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 夜<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

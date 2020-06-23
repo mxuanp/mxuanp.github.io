@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>go-basic-接口 | 夜</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="终于到接口啦，，啦啦啦啦了&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;(￣▽￣)～■干杯□～(￣▽￣)&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go-basic-接口">
+<meta property="og:url" content="https://mxuanp.github.io/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/index.html">
+<meta property="og:site_name" content="夜">
+<meta property="og:description" content="终于到接口啦，，啦啦啦啦了&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;(￣▽￣)～■干杯□～(￣▽￣)&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mxuanp.github.io/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/go-interface-nil.png">
+<meta property="og:image" content="https://mxuanp.github.io/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/go-interface-non.png">
+<meta property="og:image" content="https://mxuanp.github.io/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/go-interface-change.png">
+<meta property="og:image" content="https://mxuanp.github.io/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/go-interface-func.png">
+<meta property="article:published_time" content="2019-12-12T06:43:47.000Z">
+<meta property="article:modified_time" content="2020-06-23T12:02:02.288Z">
+<meta property="article:author" content="夜">
+<meta property="article:tag" content="go">
+<meta property="article:tag" content="golang">
+<meta property="article:tag" content="go-basic">
+<meta property="article:tag" content="go-basic-接口">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mxuanp.github.io/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/go-interface-nil.png">
+  
+    <link rel="alternate" href="/atom.xml" title="夜" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">夜</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">思いつけば、この一生はなにを求めているんだろう</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mxuanp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-go-basic-接口" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/" class="article-date">
+  <time datetime="2019-12-12T06:43:47.000Z" itemprop="datePublished">2019-12-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/go/">go</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      go-basic-接口
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="终于到接口啦，，啦啦啦啦了-￣▽￣-～■干杯□～-￣▽￣"><a href="#终于到接口啦，，啦啦啦啦了-￣▽￣-～■干杯□～-￣▽￣" class="headerlink" title="终于到接口啦，，啦啦啦啦了========(￣▽￣)～■干杯□～(￣▽￣)===================="></a>终于到接口啦，，啦啦啦啦了========(￣▽￣)～■干杯□～(￣▽￣)====================</h1><a id="more"></a>
+
+<blockquote>
+<p>所谓接口，就是合约======ο(=•ω＜=)ρ⌒☆=======================</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//来个栗子</span></span><br><span class="line"><span class="keyword">package</span> fmt</span><br><span class="line"><span class="comment">//只要实现Wirter接口，都可以调用Fprintf()</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Fprintf</span><span class="params">(w io.Writer, format <span class="keyword">string</span>, a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span> &#123;</span><br><span class="line">	p := newPrinter()</span><br><span class="line">	p.doPrintf(format, a)</span><br><span class="line">	n, err = w.Write(p.buf) <span class="comment">//p.buf这个buf就是[]byte</span></span><br><span class="line">	p.free()</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Printf</span><span class="params">(format <span class="keyword">string</span>, a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> Fprintf(os.Stdout, format, a...)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Sprintf formats according to a format specifier and returns the resulting string.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sprintf</span><span class="params">(format <span class="keyword">string</span>, a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	..........</span><br><span class="line">	<span class="keyword">return</span> s</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> io</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Wirter <span class="keyword">interface</span>&#123;</span><br><span class="line">    Write(p []<span class="keyword">byte</span>)(n <span class="keyword">int</span>,err error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="接口类型就是一系列方法的集合"><a href="#接口类型就是一系列方法的集合" class="headerlink" title="接口类型就是一系列方法的集合"></a>接口类型就是一系列方法的集合</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> io</span><br><span class="line"><span class="keyword">type</span> Reader <span class="keyword">interface</span>&#123;</span><br><span class="line">    Read(p []<span class="keyword">byte</span>) (n <span class="keyword">int</span>, err error)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Closer <span class="keyword">interface</span>&#123;</span><br><span class="line">    Close() error</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="实现接口的条件"><a href="#实现接口的条件" class="headerlink" title="实现接口的条件"></a>实现接口的条件</h2><blockquote>
+<p>一个类型如果实现了一个接口所有的方法，就实现了这个接口</p>
+</blockquote>
+<blockquote>
+<p>这里Intset就实现了Stringer接口</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Intset int的集合</span></span><br><span class="line"><span class="keyword">type</span> Intset <span class="keyword">struct</span> &#123;</span><br><span class="line">	words []<span class="keyword">uint64</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//fmt.Stringer</span></span><br><span class="line"><span class="keyword">type</span> Stringer <span class="keyword">interface</span> &#123;</span><br><span class="line">	String() <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//String 返回intset的string</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Intset)</span> <span class="title">String</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> buf bytes.Buffer</span><br><span class="line">	buf.WriteByte(<span class="string">'&#123;'</span>)</span><br><span class="line">	<span class="keyword">for</span> i, word := <span class="keyword">range</span> s.words &#123;</span><br><span class="line">		<span class="keyword">if</span> word == <span class="number">0</span> &#123;</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="number">64</span>; j++ &#123;</span><br><span class="line">			<span class="keyword">if</span> word&amp;(<span class="number">1</span>&lt;&lt;<span class="keyword">uint</span>(j)) != <span class="number">0</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> buf.Len() &gt; <span class="built_in">len</span>(<span class="string">"&#125;"</span>) &#123;</span><br><span class="line">					buf.WriteByte(<span class="string">'&#125;'</span>)</span><br><span class="line">				&#125;</span><br><span class="line">				fmt.Fprintf(&amp;buf, <span class="string">"%d"</span>, <span class="number">64</span>*i+j)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	buf.WriteByte(<span class="string">'&#125;'</span>)</span><br><span class="line">	<span class="keyword">return</span> buf.String()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="空接口-interface"><a href="#空接口-interface" class="headerlink" title="空接口 interface{}"></a>空接口 interface{}</h2><blockquote>
+<p>空接口因为没有任何要求，所以可以接受任意值</p>
+</blockquote>
+<h2 id="接口的初始化"><a href="#接口的初始化" class="headerlink" title="接口的初始化"></a>接口的初始化</h2><blockquote>
+<p>一个接口只声明没有值初始化，那么它的type和value都是nil</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> w io.Writer</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/go-interface-nil.png" class="" title="go接口初始化">
+
+<blockquote>
+<p>初始化后，type和value将会变化</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w = os.Stdout</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/go-interface-non.png" class="" title="go接口初始化后的type和值">
+
+<blockquote>
+<p>改变w的指向，w的type也会跟着改变</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w = <span class="built_in">new</span>(bytes.Buffer)</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/go-interface-change.png" class="" title="go接口值变化">
+
+<h2 id="空接口和包含nil的非空接口-坑-o-≧口≦-o"><a href="#空接口和包含nil的非空接口-坑-o-≧口≦-o" class="headerlink" title="空接口和包含nil的非空接口====坑====o(≧口≦)o======================"></a>空接口和包含nil的非空接口====坑====o(≧口≦)o======================</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> debug = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> buf *bytes.Buffer</span><br><span class="line">    <span class="keyword">if</span> debug&#123;</span><br><span class="line">        buf = <span class="built_in">new</span>(bytes.Buffer)</span><br><span class="line">    &#125;</span><br><span class="line">    f(buf)</span><br><span class="line">    <span class="keyword">if</span> debug&#123;</span><br><span class="line">        .....</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">(out io.Writer)</span></span>&#123;</span><br><span class="line">    <span class="comment">//do something .....</span></span><br><span class="line">    <span class="keyword">if</span> out != <span class="literal">nil</span>&#123;</span><br><span class="line">        out.Write([]<span class="keyword">byte</span>(<span class="string">"hello"</span>))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这个栗子里，如果吧debug置为false，将发生panic</p>
+<p>为什么，看上面接口初始化，这里把nil的buf传进来后，out被初始化成type为io.Writer,而value为nil</p>
+<p>所以if out！= nil为真，但调用out.Write是却是调用nil的value的方法</p>
+</blockquote>
+<img src="/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/go-interface-func.png" class="" title="go函数参数为接口">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//do something .....</span></span><br><span class="line"><span class="keyword">if</span> out != <span class="literal">nil</span>&#123;</span><br><span class="line">    out.Write([]<span class="keyword">byte</span>(<span class="string">"hello"</span>)) <span class="comment">//panic:nil pointer</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h2><blockquote>
+<p>简单来说就是检查某个操作对象是否和断言的类型匹配，</p>
+<ol>
+<li>如果T是具体类型，则检查x的动态类型是否和T相同，成功返回x的动态值，类型为T</li>
+<li>如果T是接口，检查x的动态类型是否满足T，成功，不会获取到动态值，而是知晓了x满足T接口，它仍是x类型，相当于x的可获取的方法集合扩大了，有了接口T的方法</li>
+</ol>
+<p>格式：x.(T), x是接口，T是类型</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> w io.Writer</span><br><span class="line">w = os.Stdout</span><br><span class="line">f := w.(*os.File) <span class="comment">//success, os.Stdout是file类型===ε = = (づ′▽`)づ</span></span><br><span class="line">c := w.(*bytes.Buffer) <span class="comment">//panic,</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> w io.Writer</span><br><span class="line">w = os.Stdout</span><br><span class="line">rw := w.(io.ReadWriter) <span class="comment">// success, *io.File 实现了ReadWriter接口,里面其实就两个方法==(～o￣3￣)～。。。。。</span></span><br><span class="line">w = <span class="built_in">new</span>(ByteCounter)</span><br><span class="line">rw = w.(io.ReadWriter) <span class="comment">//panic, *ByteCounter没有实现ReadWriter接口</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="类型断言的一个用法"><a href="#类型断言的一个用法" class="headerlink" title="类型断言的一个用法"></a>类型断言的一个用法</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//来个栗子=====n(*≧▽≦*)n====================</span></span><br><span class="line"><span class="comment">//io包下的Writer接口有一个Write方法，需要一个byte切片，如果直接将stirng</span></span><br><span class="line"><span class="comment">//转换为byte切片再写入，会生成一个临时byte切片，在数据写入后这个临时的</span></span><br><span class="line"><span class="comment">//byte切片就没用了，会造成内存重新分配，使得性能降低，但是大多数对于实现了</span></span><br><span class="line"><span class="comment">//Writer接口的类型，还实现了WriteString方法，这个方法会避免分配临时的内</span></span><br><span class="line"><span class="comment">//存拷贝，所以这里使用类型断言判断w是不是更加具体的StringWriter接口</span></span><br><span class="line"><span class="keyword">type</span> StringWriter <span class="keyword">interface</span> &#123;</span><br><span class="line">	WriteString(s <span class="keyword">string</span>) (n <span class="keyword">int</span>, err error)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">WriteString</span><span class="params">(w Writer, s <span class="keyword">string</span>)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> sw, ok := w.(StringWriter); ok &#123;</span><br><span class="line">		<span class="keyword">return</span> sw.WriteString(s)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> w.Write([]<span class="keyword">byte</span>(s))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="关于接口-…-（゜ー゜）-……"><a href="#关于接口-…-（゜ー゜）-……" class="headerlink" title="关于接口======…=====（゜ー゜）====……=========="></a>关于接口======…=====（<em>゜ー゜</em>）====……==========</h2><blockquote>
+<p>不要滥用接口，当有两个甚至更多类型需要实现同一个接口的时候才使用接口。 </p>
+<p>ask only for what you need………….━━(￣ー￣*|||━━================</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mxuanp.github.io/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/" data-id="ckbrwwf44000s4gom144jet70" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" rel="tag">go-basic-接口</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/" rel="tag">golang</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/12/13/go-error/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          go-error
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/12/go-basic-%E6%96%B9%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">go-basic-方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/go/">-go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/chef/">chef</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hello/">hello</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-golang-algorithm-%E7%AE%97%E6%B3%95-sort/" rel="tag">-go -golang -algorithm -算法 -sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RPC/" rel="tag">RPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cgo/" rel="tag">cgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gRPC/" rel="tag">gRPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-baisc-%E5%85%A5%E9%97%A8/" rel="tag">go-baisc-入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E5%87%BD%E6%95%B0/" rel="tag">go-basic-函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" rel="tag">go-basic-接口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">go-basic-数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%96%B9%E6%B3%95/" rel="tag">go-basic-方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" rel="tag">go-basic-程序结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-channel/" rel="tag">go-channel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-error/" rel="tag">go-error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-tool/" rel="tag">go-tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golamg/" rel="tag">golamg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/" rel="tag">golang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/goroutine/" rel="tag">goroutine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/" rel="tag">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/" rel="tag">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reflect/" rel="tag">reflect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slice/" rel="tag">slice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/start/" rel="tag">start</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/strings/" rel="tag">strings</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/websocket/" rel="tag">websocket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%AB%E9%94%85/" rel="tag">火锅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8C%AA%E8%B9%84/" rel="tag">猪蹄</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2/" rel="tag">面</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/go-golang-algorithm-%E7%AE%97%E6%B3%95-sort/" style="font-size: 10px;">-go -golang -algorithm -算法 -sort</a> <a href="/tags/RPC/" style="font-size: 10px;">RPC</a> <a href="/tags/cgo/" style="font-size: 10px;">cgo</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/gRPC/" style="font-size: 10px;">gRPC</a> <a href="/tags/go/" style="font-size: 20px;">go</a> <a href="/tags/go-baisc-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">go-baisc-入门</a> <a href="/tags/go-basic/" style="font-size: 16px;">go-basic</a> <a href="/tags/go-basic-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">go-basic-函数</a> <a href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" style="font-size: 10px;">go-basic-接口</a> <a href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">go-basic-数据类型</a> <a href="/tags/go-basic-%E6%96%B9%E6%B3%95/" style="font-size: 10px;">go-basic-方法</a> <a href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" style="font-size: 10px;">go-basic-程序结构</a> <a href="/tags/go-channel/" style="font-size: 10px;">go-channel</a> <a href="/tags/go-error/" style="font-size: 10px;">go-error</a> <a href="/tags/go-tool/" style="font-size: 10px;">go-tool</a> <a href="/tags/golamg/" style="font-size: 10px;">golamg</a> <a href="/tags/golang/" style="font-size: 18px;">golang</a> <a href="/tags/goroutine/" style="font-size: 10px;">goroutine</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/life/" style="font-size: 14px;">life</a> <a href="/tags/reflect/" style="font-size: 10px;">reflect</a> <a href="/tags/review/" style="font-size: 12px;">review</a> <a href="/tags/slice/" style="font-size: 10px;">slice</a> <a href="/tags/start/" style="font-size: 10px;">start</a> <a href="/tags/strings/" style="font-size: 10px;">strings</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">并发编程</a> <a href="/tags/%E7%81%AB%E9%94%85/" style="font-size: 10px;">火锅</a> <a href="/tags/%E7%8C%AA%E8%B9%84/" style="font-size: 10px;">猪蹄</a> <a href="/tags/%E9%9D%A2/" style="font-size: 10px;">面</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/06/23/hello-world/">Hello World - 夜 - Hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/21/Go%E8%AF%AD%E8%A8%80%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/">Go语言高级编程学习笔记-01</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/15/Go%E8%AF%AD%E8%A8%80%E6%A0%87%E5%87%86%E5%BA%93-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-1/">Go语言标准库-读书笔记-1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/07/%E5%9B%9E%E9%A1%BE-Go%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/">回顾-Go类型系统</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/20/go-slice/">go-slice</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 夜<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

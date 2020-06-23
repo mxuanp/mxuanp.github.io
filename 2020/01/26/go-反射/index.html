@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>go-反射 | 夜</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Go 反射">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go-反射">
+<meta property="og:url" content="https://mxuanp.github.io/2020/01/26/go-%E5%8F%8D%E5%B0%84/index.html">
+<meta property="og:site_name" content="夜">
+<meta property="og:description" content="Go 反射">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-26T04:33:14.000Z">
+<meta property="article:modified_time" content="2020-06-23T12:02:02.288Z">
+<meta property="article:author" content="夜">
+<meta property="article:tag" content="go">
+<meta property="article:tag" content="golang">
+<meta property="article:tag" content="reflect">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="夜" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">夜</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">思いつけば、この一生はなにを求めているんだろう</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mxuanp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-go-反射" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/26/go-%E5%8F%8D%E5%B0%84/" class="article-date">
+  <time datetime="2020-01-26T04:33:14.000Z" itemprop="datePublished">2020-01-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/go/">go</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      go-反射
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Go-反射"><a href="#Go-反射" class="headerlink" title="Go 反射"></a>Go 反射</h1><a id="more"></a>
+
+<blockquote>
+<p>反射：在运行时更新变量和检查它们的值，调用它们的方法和支持的内在操作，但在编译时不知道这些变量的具体类型。</p>
+</blockquote>
+<h2 id="reflect-Type-和-reflect-Value"><a href="#reflect-Type-和-reflect-Value" class="headerlink" title="reflect.Type 和 reflect.Value"></a>reflect.Type 和 reflect.Value</h2><blockquote>
+<p>这应该是go的反射最重要的东西了。。。。w(ﾟДﾟ)w……….</p>
+</blockquote>
+<h3 id="reflect-Type-reflect-TypeOf"><a href="#reflect-Type-reflect-TypeOf" class="headerlink" title="reflect.Type, reflect.TypeOf()"></a>reflect.Type, reflect.TypeOf()</h3><blockquote>
+<p>reflect.TypeOf 接受interface{},并返回reflect.Type</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t := reflect.TypeOf(<span class="number">3</span>) <span class="comment">// a reflect.Type</span></span><br><span class="line">fmt.Println(t.String()) <span class="comment">// "int"</span></span><br><span class="line">fmt.Println(t) <span class="comment">// "int"</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>PS：reflect.TypeOf 返回的是接口值，而不是接口类型，可以参考 <a href="https://yaya.life/2019/12/12/go-basic-接口/" target="_blank" rel="noopener">https://yaya.life/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/</a> </p>
+</blockquote>
+<h3 id="reflect-Value-reflect-ValueOf"><a href="#reflect-Value-reflect-ValueOf" class="headerlink" title="reflect.Value , reflect.ValueOf()"></a>reflect.Value , reflect.ValueOf()</h3><blockquote>
+<p>reflect.ValueOf() 接受interface{}, 返回 reflect.Value, ValueOf和TypeOf类似，但Value可以持有接口值</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">v := reflect.ValueOf(<span class="number">3</span>)</span><br><span class="line">fmt.Println(v) <span class="comment">// "3"</span></span><br><span class="line">fmt.Printf(<span class="string">"%v\n"</span>, v) <span class="comment">// "3"</span></span><br><span class="line">fmt.Println(v.String()) <span class="comment">// <span class="doctag">NOTE:</span> "&lt;int Value&gt;"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//v.Type() 返回类型</span></span><br><span class="line">fmt.Println(v.Type().String()) <span class="comment">// "int"</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>PS：reflect.Value 和interface{}都可以保存任意值，但空接口隐藏了值对应的表示方式和公开的方法</p>
+</blockquote>
+<p>来个栗子。。。(￣ε(#￣)☆╰╮o(￣皿￣///)</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Any formats any value as a string</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Any</span><span class="params">(value <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> formatAtom(reflect.ValueOf(value))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">formatAtom</span><span class="params">(v reflect.Value)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	<span class="keyword">switch</span> v.Kind() &#123;</span><br><span class="line">	<span class="keyword">case</span> reflect.Invalid:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"invalid"</span></span><br><span class="line">	<span class="keyword">case</span> reflect.Int, reflect.Int16, reflect.Int32, reflect.Int64:</span><br><span class="line">		<span class="keyword">return</span> strconv.FormatInt(v.Int(), <span class="number">10</span>)</span><br><span class="line">	<span class="keyword">case</span> reflect.Uint, reflect.Uint16, reflect.Uint32, reflect.Uint64, reflect.Uintptr:</span><br><span class="line">		<span class="keyword">return</span> strconv.FormatUint(v.Uint(), <span class="number">10</span>)</span><br><span class="line">    <span class="comment">// ...还有其它的， 不写了</span></span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">return</span> v.Type().String() + <span class="string">"value"</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过reflect-ValueOf-修改值"><a href="#通过reflect-ValueOf-修改值" class="headerlink" title="通过reflect.ValueOf()修改值"></a>通过reflect.ValueOf()修改值</h2><blockquote>
+<p>使用reflect.Value的CanAddr查看是否可以取地址，但是CanAddr并不代表可以修改， CanSet才代表可以修改</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">x := <span class="number">2</span></span><br><span class="line">a := reflect.ValueOf(<span class="number">2</span>) </span><br><span class="line">b := reflect.ValueOf(x)</span><br><span class="line">c := reflect.ValueOf(&amp;x)</span><br><span class="line">d := c.Elem()</span><br><span class="line"></span><br><span class="line">a.CanAddr() <span class="comment">// false</span></span><br><span class="line">b.CanAddr() <span class="comment">//false</span></span><br><span class="line">c.CanAddr() <span class="comment">//false</span></span><br><span class="line">d.CanAddr() <span class="comment">//true</span></span><br><span class="line">fmt.Println(d.CanAddr(), d.CanSet()) <span class="comment">// "true" "true"</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>PS：是否可以取地址的规则类似，通过指针间接地获取的reflect.Value都是可以取值的， 例如 slice的表达式 e[i] 隐式地包含一个指针， 是可取值的， 即使e不支持取值也没关系</p>
+</blockquote>
+<blockquote>
+<p>改变值，先使用Addr获取一个Value返回指向变量的指针，在调用Interface()， 返回一个interface{}, 之后就可以使用断言来更新变量</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x := <span class="number">2</span></span><br><span class="line">d := reflect.ValueOf(&amp;x).Elem()</span><br><span class="line">px := d.Addr().Interface().(*<span class="keyword">int</span>)  <span class="comment">// px := &amp;x</span></span><br><span class="line">*px = <span class="number">3</span></span><br><span class="line">fmt.Println(x) <span class="comment">// "3"</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以。。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d.Set(reflect.ValueOf(<span class="number">4</span>))</span><br><span class="line">fmt.Println(x) <span class="comment">// "4"</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Set方法会检查是否可赋值， 上面都是int，所以可以， 如果值不一致，就会panic</p>
+</blockquote>
+<blockquote>
+<p>也有很多用于基本数据类型的方法</p>
+<p>SetInt， SetUint， SetString， SetFloat等等， ，， </p>
+</blockquote>
+<h2 id="获取结构体的Tag"><a href="#获取结构体的Tag" class="headerlink" title="获取结构体的Tag"></a>获取结构体的Tag</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">v := reflect.ValueOf(ptr).Elem() <span class="comment">// 获取struct p的value</span></span><br><span class="line"><span class="keyword">for</span> i := <span class="number">0</span>;i&lt;v.NumField();i++&#123;</span><br><span class="line">    fieldInfo := v.Type().Field(i) <span class="comment">//reflect.StructField</span></span><br><span class="line">    tag := fieldInfo.Tag	<span class="comment">// reflect.StructTag</span></span><br><span class="line">    name := tag.Get(<span class="string">"tagName"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取结构体的方法"><a href="#获取结构体的方法" class="headerlink" title="获取结构体的方法"></a>获取结构体的方法</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printMethod</span><span class="params">(x <span class="keyword">interface</span>&#123;&#125;)</span></span>&#123;</span><br><span class="line">    v := reflect.ValueOf(x)</span><br><span class="line">    t := v.Type()</span><br><span class="line">    fmt.Printf(<span class="string">"type %s\n"</span>, t)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>;i &lt; v.NumMethod(); i++ &#123;</span><br><span class="line">        methodType := v.Method(i).Type()</span><br><span class="line">        fmt.Printf(<span class="string">"func (%s) %s%s\n"</span>, t, t.Method(i).Name, strings.TrimPrefix(methodType.String(), <span class="string">"func"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//调用这个方法</span></span><br><span class="line">v.Method(i).Call(...in) <span class="comment">//调用Method的Call</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="最后。。。"><a href="#最后。。。" class="headerlink" title="最后。。。"></a>最后。。。</h2><blockquote>
+<p>反射是脆弱的，难用的，且运行速度比普通代码慢1，2个量级， 且相较下没有那么安全。能不用就不用吧</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mxuanp.github.io/2020/01/26/go-%E5%8F%8D%E5%B0%84/" data-id="ckbrwwf60003f4gombgnwc0ve" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/" rel="tag">golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reflect/" rel="tag">reflect</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/27/go-%E5%BA%95%E5%B1%82%E7%BC%96%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          go-底层编程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/24/go-test/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">go-test</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/go/">-go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/chef/">chef</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hello/">hello</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-golang-algorithm-%E7%AE%97%E6%B3%95-sort/" rel="tag">-go -golang -algorithm -算法 -sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RPC/" rel="tag">RPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cgo/" rel="tag">cgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gRPC/" rel="tag">gRPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-baisc-%E5%85%A5%E9%97%A8/" rel="tag">go-baisc-入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E5%87%BD%E6%95%B0/" rel="tag">go-basic-函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" rel="tag">go-basic-接口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">go-basic-数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%96%B9%E6%B3%95/" rel="tag">go-basic-方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" rel="tag">go-basic-程序结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-channel/" rel="tag">go-channel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-error/" rel="tag">go-error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-tool/" rel="tag">go-tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golamg/" rel="tag">golamg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/" rel="tag">golang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/goroutine/" rel="tag">goroutine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/" rel="tag">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/" rel="tag">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reflect/" rel="tag">reflect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slice/" rel="tag">slice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/start/" rel="tag">start</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/strings/" rel="tag">strings</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/websocket/" rel="tag">websocket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%AB%E9%94%85/" rel="tag">火锅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8C%AA%E8%B9%84/" rel="tag">猪蹄</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2/" rel="tag">面</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/go-golang-algorithm-%E7%AE%97%E6%B3%95-sort/" style="font-size: 10px;">-go -golang -algorithm -算法 -sort</a> <a href="/tags/RPC/" style="font-size: 10px;">RPC</a> <a href="/tags/cgo/" style="font-size: 10px;">cgo</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/gRPC/" style="font-size: 10px;">gRPC</a> <a href="/tags/go/" style="font-size: 20px;">go</a> <a href="/tags/go-baisc-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">go-baisc-入门</a> <a href="/tags/go-basic/" style="font-size: 16px;">go-basic</a> <a href="/tags/go-basic-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">go-basic-函数</a> <a href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" style="font-size: 10px;">go-basic-接口</a> <a href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">go-basic-数据类型</a> <a href="/tags/go-basic-%E6%96%B9%E6%B3%95/" style="font-size: 10px;">go-basic-方法</a> <a href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" style="font-size: 10px;">go-basic-程序结构</a> <a href="/tags/go-channel/" style="font-size: 10px;">go-channel</a> <a href="/tags/go-error/" style="font-size: 10px;">go-error</a> <a href="/tags/go-tool/" style="font-size: 10px;">go-tool</a> <a href="/tags/golamg/" style="font-size: 10px;">golamg</a> <a href="/tags/golang/" style="font-size: 18px;">golang</a> <a href="/tags/goroutine/" style="font-size: 10px;">goroutine</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/life/" style="font-size: 14px;">life</a> <a href="/tags/reflect/" style="font-size: 10px;">reflect</a> <a href="/tags/review/" style="font-size: 12px;">review</a> <a href="/tags/slice/" style="font-size: 10px;">slice</a> <a href="/tags/start/" style="font-size: 10px;">start</a> <a href="/tags/strings/" style="font-size: 10px;">strings</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">并发编程</a> <a href="/tags/%E7%81%AB%E9%94%85/" style="font-size: 10px;">火锅</a> <a href="/tags/%E7%8C%AA%E8%B9%84/" style="font-size: 10px;">猪蹄</a> <a href="/tags/%E9%9D%A2/" style="font-size: 10px;">面</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/06/23/hello-world/">Hello World - 夜 - Hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/21/Go%E8%AF%AD%E8%A8%80%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/">Go语言高级编程学习笔记-01</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/15/Go%E8%AF%AD%E8%A8%80%E6%A0%87%E5%87%86%E5%BA%93-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-1/">Go语言标准库-读书笔记-1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/07/%E5%9B%9E%E9%A1%BE-Go%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/">回顾-Go类型系统</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/20/go-slice/">go-slice</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 夜<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
