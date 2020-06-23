@@ -5,22 +5,14 @@
   
 
   
-  <title>go-basic-方法 | 夜</title>
+  <title>Tag: algorithm | 夜</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="到方法了呢&#x3D;&#x3D;&#x3D;(๑•̀ㅂ•́)و✧&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;(๑•̀ㅂ•́)و✧&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
-<meta property="og:type" content="article">
-<meta property="og:title" content="go-basic-方法">
-<meta property="og:url" content="https://mxuanp.github.io/2019/12/12/go-basic-%E6%96%B9%E6%B3%95/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="夜">
+<meta property="og:url" content="https://mxuanp.github.io/tags/algorithm/index.html">
 <meta property="og:site_name" content="夜">
-<meta property="og:description" content="到方法了呢&#x3D;&#x3D;&#x3D;(๑•̀ㅂ•́)و✧&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;(๑•̀ㅂ•́)و✧&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2019-12-12T02:35:40.000Z">
-<meta property="article:modified_time" content="2020-06-23T12:02:02.288Z">
 <meta property="article:author" content="夜">
-<meta property="article:tag" content="go">
-<meta property="article:tag" content="golang">
-<meta property="article:tag" content="go-basic">
-<meta property="article:tag" content="go-basic-方法">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="夜" type="application/atom+xml">
@@ -74,87 +66,40 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-go-basic-方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/12/go-basic-%E6%96%B9%E6%B3%95/" class="article-date">
-  <time datetime="2019-12-12T02:35:40.000Z" itemprop="datePublished">2019-12-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/go/">go</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      go-basic-方法
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2020/03/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" class="archive-article-date">
+  <time datetime="2020-03-04T09:33:43.000Z" itemprop="datePublished">Mar 4</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/03/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">排序算法</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="到方法了呢-๑•̀ㅂ•́-و✧-๑•̀ㅂ•́-و✧"><a href="#到方法了呢-๑•̀ㅂ•́-و✧-๑•̀ㅂ•́-و✧" class="headerlink" title="到方法了呢===(๑•̀ㅂ•́)و✧==============(๑•̀ㅂ•́)و✧==============="></a>到方法了呢===(๑•̀ㅂ•́)و✧==============(๑•̀ㅂ•́)و✧===============</h1><a id="more"></a>
-
-<blockquote>
-<p>方法和函数相比，多个接收器（receiver）</p>
-</blockquote>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> geometry</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"math"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Point 是对二维平面的点的抽象</span></span><br><span class="line"><span class="keyword">type</span> Point <span class="keyword">struct</span>&#123;</span><br><span class="line">	X,Y <span class="keyword">float64</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Distance 计算两个点的距离</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Distance</span><span class="params">(p,q Point)</span> <span class="title">float64</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> math.Hypot(q.X-p.X,q.Y-p.Y)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Distance 计算两个点的距离</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p Point)</span> <span class="title">Distance</span><span class="params">(q Point)</span> <span class="title">float64</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> math.Hypot(q.X-p.X,q.Y-p.Y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="如果接收器是指针调用方法"><a href="#如果接收器是指针调用方法" class="headerlink" title="如果接收器是指针调用方法"></a>如果接收器是指针调用方法</h2><blockquote>
-<h6 id="和普通struct的调用没什么区别，go编译器会自行优化-～-￣▽￣～-～￣▽￣-～"><a href="#和普通struct的调用没什么区别，go编译器会自行优化-～-￣▽￣～-～￣▽￣-～" class="headerlink" title="和普通struct的调用没什么区别，go编译器会自行优化====～(￣▽￣～)(～￣▽￣)～========="></a>和普通struct的调用没什么区别，go编译器会自行优化====～(￣▽￣～)(～￣▽￣)～=========</h6></blockquote>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r := &amp;Point&#123;<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">b := &amp;Point&#123;<span class="number">2</span>,<span class="number">4</span>&#125;</span><br><span class="line">d := r.Distance(b)</span><br></pre></td></tr></table></figure>
-
-<h2 id="接收器允许是nil"><a href="#接收器允许是nil" class="headerlink" title="接收器允许是nil"></a>接收器允许是nil</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> List <span class="keyword">struct</span>&#123;</span><br><span class="line">    Value <span class="keyword">int</span></span><br><span class="line">    Tail *List</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Sum 返回list的所有value的和</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(list *List)</span> <span class="title">Sum</span><span class="params">()</span> <span class="title">int</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> list == <span class="literal">nil</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> list.Value + list.Tail.Sum()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="可以嵌套结构体来继承方法"><a href="#可以嵌套结构体来继承方法" class="headerlink" title="可以嵌套结构体来继承方法"></a>可以嵌套结构体来继承方法</h2><blockquote>
-<p>嵌套的结构体的方法没有二义性，就可以直接调用,有的话需要详细到某个成员</p>
-</blockquote>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> ColorPoint <span class="keyword">struct</span>&#123;</span><br><span class="line">    Point</span><br><span class="line">    Color color.RGBA</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">p := ColorPoint&#123;Point&#123;<span class="number">1</span>,<span class="number">2</span>&#125;,color.RGBA&#123;<span class="number">23</span>,<span class="number">34</span>,<span class="number">45</span>,<span class="number">100</span>&#125;&#125;</span><br><span class="line">d := p.Distance(p)</span><br></pre></td></tr></table></figure>
-
-<h2 id="方法和函数一样可以是函数类型"><a href="#方法和函数一样可以是函数类型" class="headerlink" title="方法和函数一样可以是函数类型"></a>方法和函数一样可以是函数类型</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DistanceFromP := p.Distance</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line">DistanceFromP(q)</span><br></pre></td></tr></table></figure>
-
-<p>==========いざ、ここまで==========<em>´∀<code>)´∀</code>)</em>´∀<code>)*´∀</code>)======================</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mxuanp.github.io/2019/12/12/go-basic-%E6%96%B9%E6%B3%95/" data-id="ckbrwwf42000l4gomf709harz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic-%E6%96%B9%E6%B3%95/" rel="tag">go-basic-方法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/" rel="tag">golang</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          go-basic-接口
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/12/10/go-basic-%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">go-basic-函数</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
+
 
 </section>
         
