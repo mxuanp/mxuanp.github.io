@@ -1,528 +1,208 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>夜 - 思いつけば、この一生はなにを求めているんだろう</title><meta name="description"><meta name="author" content="夜"><meta name="copyright" content="夜"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://mxuanp.github.io/page/3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="website"><meta property="og:title" content="夜"><meta property="og:url" content="https://mxuanp.github.io/page/3/"><meta property="og:site_name" content="夜"><meta property="og:description"><meta property="og:image" content="https://i.loli.net/2020/06/24/IwgXGUdHJCxSTBl.jpg"><meta property="article:published_time" content="2020-06-24T10:53:46.332Z"><meta property="article:modified_time" content="2020-06-24T10:53:46.332Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
 
-  
-  <title>夜</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="夜">
-<meta property="og:url" content="https://mxuanp.github.io/page/3/index.html">
-<meta property="og:site_name" content="夜">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="夜">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="夜" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+var autoChangeMode = '1'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">夜</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">思いつけば、この一生はなにを求めているんだろう</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-          <a class="main-nav-link" href="/about">about</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mxuanp.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-go-basic-接口" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/" class="article-date">
-  <time datetime="2019-12-12T06:43:47.000Z" itemprop="datePublished">2019-12-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/go/">go</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/">go-basic-接口</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="终于到接口啦，，啦啦啦啦了-￣▽￣-～■干杯□～-￣▽￣"><a href="#终于到接口啦，，啦啦啦啦了-￣▽￣-～■干杯□～-￣▽￣" class="headerlink" title="终于到接口啦，，啦啦啦啦了========(￣▽￣)～■干杯□～(￣▽￣)===================="></a>终于到接口啦，，啦啦啦啦了========(￣▽￣)～■干杯□～(￣▽￣)====================</h1>
-        
-          <p class="article-more-link">
-            <a href="/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mxuanp.github.io/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/" data-id="ckbrwwf44000s4gom144jet70" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" rel="tag">go-basic-接口</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/" rel="tag">golang</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: true    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isSidebar: false
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="夜" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://i.loli.net/2020/06/24/IwgXGUdHJCxSTBl.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">27</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">35</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://i.loli.net/2020/06/24/FZsk3crg1BYX9Cp.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">夜</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site_title">夜</h1><div id="site_subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/mxuanp" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:kamiyamayo7@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS链接"><i class="fa fa-rss"></i></a></div></div><div id="scroll_down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/" title="go-basic-接口">     <img class="post_bg" data-src="https://i.loli.net/2020/06/24/ECDMSvkQHGhdPTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="go-basic-接口"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/12/12/go-basic-%E6%8E%A5%E5%8F%A3/" title="go-basic-接口">go-basic-接口</a><div class="article-meta-wrap"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2019-12-12 14:43:47"><i class="far fa-calendar-alt"></i>2019-12-12</span><span class="article-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-06-24 18:38:54"><i class="fas fa-history"></i>2020-06-24</span></time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/go/">go</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/go/">go</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/golang/">golang</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/go-basic/">go-basic</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/">go-basic-接口</a></span></div><div class="content">终于到接口啦，，啦啦啦啦了========(￣▽￣)～■干杯□～(￣▽￣)====================
 
 
-  
-    <article id="post-go-basic-方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/12/go-basic-%E6%96%B9%E6%B3%95/" class="article-date">
-  <time datetime="2019-12-12T02:35:40.000Z" itemprop="datePublished">2019-12-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/go/">go</a>
-  </div>
+所谓接口，就是合约======ο(=•ω＜=)ρ⌒☆=======================
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/12/go-basic-%E6%96%B9%E6%B3%95/">go-basic-方法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="到方法了呢-๑•̀ㅂ•́-و✧-๑•̀ㅂ•́-و✧"><a href="#到方法了呢-๑•̀ㅂ•́-و✧-๑•̀ㅂ•́-و✧" class="headerlink" title="到方法了呢===(๑•̀ㅂ•́)و✧==============(๑•̀ㅂ•́)و✧==============="></a>到方法了呢===(๑•̀ㅂ•́)و✧==============(๑•̀ㅂ•́)و✧===============</h1>
-        
-          <p class="article-more-link">
-            <a href="/2019/12/12/go-basic-%E6%96%B9%E6%B3%95/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mxuanp.github.io/2019/12/12/go-basic-%E6%96%B9%E6%B3%95/" data-id="ckbrwwf42000l4gomf709harz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic-%E6%96%B9%E6%B3%95/" rel="tag">go-basic-方法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/" rel="tag">golang</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+12345678910111213141516171819202122232425//来个栗子package fmt//只要实现Wirter接口，都可以调用Fprintf()func Fprintf(w io.Writer, format string, a ...interface&#123;&#125;) (n int, err error) &#123;	p := newPrinter()	p.doPrintf(format, a)	n, err = w.Write(p.buf) //p.buf这个buf就是[]byte	p.free()	return&#125;func Printf(format string, a ...interface&#123;&#125;) (n int, err error) &#123;	return Fprintf(os.St ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2019/12/12/go-basic-%E6%96%B9%E6%B3%95/" title="go-basic-方法">     <img class="post_bg" data-src="https://i.loli.net/2020/06/24/ECDMSvkQHGhdPTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="go-basic-方法"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/12/12/go-basic-%E6%96%B9%E6%B3%95/" title="go-basic-方法">go-basic-方法</a><div class="article-meta-wrap"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2019-12-12 10:35:40"><i class="far fa-calendar-alt"></i>2019-12-12</span><span class="article-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-06-24 18:39:00"><i class="fas fa-history"></i>2020-06-24</span></time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/go/">go</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/go/">go</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/golang/">golang</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/go-basic/">go-basic</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/go-basic-%E6%96%B9%E6%B3%95/">go-basic-方法</a></span></div><div class="content">到方法了呢===(๑•̀ㅂ•́)و✧==============(๑•̀ㅂ•́)و✧===============
 
 
-  
-    <article id="post-go-basic-函数" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/10/go-basic-%E5%87%BD%E6%95%B0/" class="article-date">
-  <time datetime="2019-12-10T06:47:07.000Z" itemprop="datePublished">2019-12-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/go/">go</a>
-  </div>
+方法和函数相比，多个接收器（receiver）
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/10/go-basic-%E5%87%BD%E6%95%B0/">go-basic-函数</a>
-    </h1>
-  
+123456789101112131415161718package geometryimport "math"//Point 是对二维平面的点的抽象type Point struct&#123;	X,Y float64&#125;//Distance 计算两个点的距离func Distance(p,q Point) float64 &#123;	return math.Hypot(q.X-p.X,q.Y-p.Y)&#125;//Distance 计算两个点的距离func (p Point) Distance(q Point) float64&#123;	return math.Hypot(q.X-p.X,q.Y-p.Y)&#125;
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="到函数了呢-～o￣▽￣-～o-。。。滚来滚去……o～-＿△＿o"><a href="#到函数了呢-～o￣▽￣-～o-。。。滚来滚去……o～-＿△＿o" class="headerlink" title="到函数了呢===========(～o￣▽￣)～o 。。。滚来滚去……o～(＿△＿o==============="></a>到函数了呢===========(～o￣▽￣)～o 。。。滚来滚去……o～(＿△＿o===============</h1>
-        
-          <p class="article-more-link">
-            <a href="/2019/12/10/go-basic-%E5%87%BD%E6%95%B0/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mxuanp.github.io/2019/12/10/go-basic-%E5%87%BD%E6%95%B0/" data-id="ckbrwwf40000h4gom161wg4o7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic-%E5%87%BD%E6%95%B0/" rel="tag">go-basic-函数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/" rel="tag">golang</a></li></ul>
+如果接收器是指针调用方法
+和普通struct的调用没什么区别，go编译器会自行优化====～(￣▽￣～)(～￣▽￣)～=========
+123r := &amp;Point&#123 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2019/12/10/go-basic-%E5%87%BD%E6%95%B0/" title="go-basic-函数">     <img class="post_bg" data-src="https://i.loli.net/2020/06/24/ECDMSvkQHGhdPTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="go-basic-函数"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/12/10/go-basic-%E5%87%BD%E6%95%B0/" title="go-basic-函数">go-basic-函数</a><div class="article-meta-wrap"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2019-12-10 14:47:07"><i class="far fa-calendar-alt"></i>2019-12-10</span><span class="article-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-06-24 18:38:50"><i class="fas fa-history"></i>2020-06-24</span></time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/go/">go</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/go/">go</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/golang/">golang</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/go-basic/">go-basic</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/go-basic-%E5%87%BD%E6%95%B0/">go-basic-函数</a></span></div><div class="content">到函数了呢===========(～o￣▽￣)～o 。。。滚来滚去……o～(＿△＿o===============
 
-    </footer>
-  </div>
-  
-</article>
+函数声明
+func name(parameter-list) (result-list){
+​    body………………
+}
 
 
-  
-    <article id="post-go-basic-json的使用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/10/go-basic-json%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time datetime="2019-12-10T06:19:15.000Z" itemprop="datePublished">2019-12-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/go/">go</a>
-  </div>
+go的函数可以是一个类型,但不可以作为map的key，也不可以相互比较
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/10/go-basic-json%E7%9A%84%E4%BD%BF%E7%94%A8/">go-basic-json的使用</a>
-    </h1>
-  
+123456var add = func(a, b int) int &#123;return a+b&#125;//调用add(1,3)
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Go的json包的使用-ヽ-✿ﾟ▽ﾟ-ノ"><a href="#Go的json包的使用-ヽ-✿ﾟ▽ﾟ-ノ" class="headerlink" title="Go的json包的使用============ヽ(✿ﾟ▽ﾟ)ノ============================"></a>Go的json包的使用============ヽ(✿ﾟ▽ﾟ)ノ============================</h1><blockquote>
-<p>PS：其它标准协议，如XML，ASN，Protocol Buffers都有类似的API接口</p>
-</blockquote>
-        
-          <p class="article-more-link">
-            <a href="/2019/12/10/go-basic-json%E7%9A%84%E4%BD%BF%E7%94%A8/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mxuanp.github.io/2019/12/10/go-basic-json%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckbrwwf3x000a4gom2yhv7wt5" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/" rel="tag">golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/json/" rel="tag">json</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+函数名称首字母大写就可以让其它包使用，和变量一样呢。。。。。ヾ(´∀`o)+
 
 
-  
-    <article id="post-go-basic-数据类型" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/10/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="article-date">
-  <time datetime="2019-12-10T01:35:23.000Z" itemprop="datePublished">2019-12-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/go/">go</a>
-  </div>
+go函数的递归所需的栈可以根据需要增加（初始时很小），所以不必考虑溢出和安全问题，（把机子内存撑爆另当别论===ㄟ( ▔, ▔ )ㄏ======）
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/10/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">go-basic-数据类型</a>
-    </h1>
-  
+返回值
+go的函数和c类似，但是可以多个返回值，型参是值拷贝，要改值需要传引用或指针
+go的返回值有个神奇的地方
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="到了数据类型的时间了呢，，，-lt-￣ˇ￣"><a href="#到了数据类型的时间了呢，，，-lt-￣ˇ￣" class="headerlink" title="到了数据类型的时间了呢，，，===&lt;(￣ˇ￣)/============================"></a>到了数据类型的时间了呢，，，===&lt;(￣ˇ￣)/============================</h1>
-        
-          <p class="article-more-link">
-            <a href="/2019/12/10/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mxuanp.github.io/2019/12/10/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="ckbrwwf45000v4gom1uil4uxy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">go-basic-数据类型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/" rel="tag">golang</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-go-basic-程序结构" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/09/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" class="article-date">
-  <time datetime="2019-12-09T07:07:31.000Z" itemprop="datePublished">2019-12-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/go/">go</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/09/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/">go-basic-程序结构</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Gopher，开始程序结构啦，go，go，go-lt-￣︶￣-gt"><a href="#Gopher，开始程序结构啦，go，go，go-lt-￣︶￣-gt" class="headerlink" title="Gopher，开始程序结构啦，go，go，go============&lt;(￣︶￣)&gt;=========="></a>Gopher，开始程序结构啦，go，go，go============&lt;(￣︶￣)&gt;==========</h1>
-        
-          <p class="article-more-link">
-            <a href="/2019/12/09/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mxuanp.github.io/2019/12/09/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" data-id="ckbrwwf3z000f4gom05l70jor" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" rel="tag">go-basic-程序结构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/" rel="tag">golang</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-go-basic-入门" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/09/go-basic-%E5%85%A5%E9%97%A8/" class="article-date">
-  <time datetime="2019-12-09T01:18:42.000Z" itemprop="datePublished">2019-12-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/go/">go</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/09/go-basic-%E5%85%A5%E9%97%A8/">go-basic-入门</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Gopher第一天"><a href="#Gopher第一天" class="headerlink" title="Gopher第一天"></a>Gopher第一天</h1>
-        
-          <p class="article-more-link">
-            <a href="/2019/12/09/go-basic-%E5%85%A5%E9%97%A8/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mxuanp.github.io/2019/12/09/go-basic-%E5%85%A5%E9%97%A8/" data-id="ckbrwwf3y000b4gom03rg0pnn" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-baisc-%E5%85%A5%E9%97%A8/" rel="tag">go-baisc-入门</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golamg/" rel="tag">golamg</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/chef/">chef</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hello/">hello</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/RPC/" rel="tag">RPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cgo/" rel="tag">cgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gRPC/" rel="tag">gRPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-baisc-%E5%85%A5%E9%97%A8/" rel="tag">go-baisc-入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic/" rel="tag">go-basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E5%87%BD%E6%95%B0/" rel="tag">go-basic-函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" rel="tag">go-basic-接口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">go-basic-数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E6%96%B9%E6%B3%95/" rel="tag">go-basic-方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" rel="tag">go-basic-程序结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-channel/" rel="tag">go-channel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-error/" rel="tag">go-error</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-tool/" rel="tag">go-tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golamg/" rel="tag">golamg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/" rel="tag">golang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/goroutine/" rel="tag">goroutine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/" rel="tag">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/" rel="tag">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reflect/" rel="tag">reflect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slice/" rel="tag">slice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/" rel="tag">sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/start/" rel="tag">start</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/strings/" rel="tag">strings</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/websocket/" rel="tag">websocket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%81%AB%E9%94%85/" rel="tag">火锅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8C%AA%E8%B9%84/" rel="tag">猪蹄</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2/" rel="tag">面</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/RPC/" style="font-size: 10px;">RPC</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/cgo/" style="font-size: 10px;">cgo</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/gRPC/" style="font-size: 10px;">gRPC</a> <a href="/tags/go/" style="font-size: 20px;">go</a> <a href="/tags/go-baisc-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">go-baisc-入门</a> <a href="/tags/go-basic/" style="font-size: 16px;">go-basic</a> <a href="/tags/go-basic-%E5%87%BD%E6%95%B0/" style="font-size: 10px;">go-basic-函数</a> <a href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" style="font-size: 10px;">go-basic-接口</a> <a href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">go-basic-数据类型</a> <a href="/tags/go-basic-%E6%96%B9%E6%B3%95/" style="font-size: 10px;">go-basic-方法</a> <a href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" style="font-size: 10px;">go-basic-程序结构</a> <a href="/tags/go-channel/" style="font-size: 10px;">go-channel</a> <a href="/tags/go-error/" style="font-size: 10px;">go-error</a> <a href="/tags/go-tool/" style="font-size: 10px;">go-tool</a> <a href="/tags/golamg/" style="font-size: 10px;">golamg</a> <a href="/tags/golang/" style="font-size: 18px;">golang</a> <a href="/tags/goroutine/" style="font-size: 10px;">goroutine</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/life/" style="font-size: 14px;">life</a> <a href="/tags/reflect/" style="font-size: 10px;">reflect</a> <a href="/tags/review/" style="font-size: 12px;">review</a> <a href="/tags/slice/" style="font-size: 10px;">slice</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/start/" style="font-size: 10px;">start</a> <a href="/tags/strings/" style="font-size: 10px;">strings</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">并发编程</a> <a href="/tags/%E7%81%AB%E9%94%85/" style="font-size: 10px;">火锅</a> <a href="/tags/%E7%8C%AA%E8%B9%84/" style="font-size: 10px;">猪蹄</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E9%9D%A2/" style="font-size: 10px;">面</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/06/23/hello-world/">Hello World - 夜 - Hexo</a>
-          </li>
-        
-          <li>
-            <a href="/2020/06/21/Go%E8%AF%AD%E8%A8%80%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/">Go语言高级编程学习笔记-01</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/15/Go%E8%AF%AD%E8%A8%80%E6%A0%87%E5%87%86%E5%BA%93-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-1/">Go语言标准库-读书笔记-1</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/07/%E5%9B%9E%E9%A1%BE-Go%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/">回顾-Go类型系统</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/20/go-slice/">go-slice</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 夜<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/about" class="mobile-nav-link">about</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+1234func add(a, b int) (c int)&#123;    c = a+b    return  //等同于 return c  ===&gt;即在result-li ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2019/12/10/go-basic-json%E7%9A%84%E4%BD%BF%E7%94%A8/" title="go-basic-json的使用">     <img class="post_bg" data-src="https://i.loli.net/2020/06/24/ECDMSvkQHGhdPTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="go-basic-json的使用"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/12/10/go-basic-json%E7%9A%84%E4%BD%BF%E7%94%A8/" title="go-basic-json的使用">go-basic-json的使用</a><div class="article-meta-wrap"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2019-12-10 14:19:15"><i class="far fa-calendar-alt"></i>2019-12-10</span><span class="article-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-06-24 18:38:43"><i class="fas fa-history"></i>2020-06-24</span></time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/go/">go</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/go/">go</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/golang/">golang</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/go-basic/">go-basic</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/json/">json</a></span></div><div class="content">Go的json包的使用============ヽ(✿ﾟ▽ﾟ)ノ============================
+PS：其它标准协议，如XML，ASN，Protocol Buffers都有类似的API接口
 
 
 
+直接来个栗子=================o(^＠^)o================================
+Go中将moive类似的结构体slice转换为json的过程叫编组（marshaling）
+对应的逆编码操作就是unmarshaling
 
-<script src="/js/script.js"></script>
+12345678910111213141516171819202122232425262728//json的使用package mainimport(	"encoding/json"	"fmt"	"log")//Movie 是电影的结构体抽象type Movie struct&#123;	Title string	Year int `json:"released"`	Color bool `json:"color,omitempty"`	Actors []string&#125;func main() &#12 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2019/12/10/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="go-basic-数据类型">     <img class="post_bg" data-src="https://i.loli.net/2020/06/24/ECDMSvkQHGhdPTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="go-basic-数据类型"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/12/10/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="go-basic-数据类型">go-basic-数据类型</a><div class="article-meta-wrap"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2019-12-10 09:35:23"><i class="far fa-calendar-alt"></i>2019-12-10</span><span class="article-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-06-24 18:38:57"><i class="fas fa-history"></i>2020-06-24</span></time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/go/">go</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/go/">go</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/golang/">golang</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/go-basic/">go-basic</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">go-basic-数据类型</a></span></div><div class="content">到了数据类型的时间了呢，，，===&lt;(￣ˇ￣)/============================
+
+基础数据类型
+int8,int16,int32,int64分别是8位，16位，32位，64位的有符号整型
+uint8,uint16,uint32,uint64与上面的整型对应，是无符号的整型
+int,uint对应特定CPU平台，可能32位，可能64位  PS:int并不是int32，如果都是32位，需要int为int32时，也需要强制转换
+float32,float64浮点数类型 PS：可以使用科学计数法表示
+bool布尔型
+string字符串  PS：字符串是不可变的字节序列，不是字符序列
+rune 和int32等价，通常用于表示Unicode码点，可以当成是字符
+complex64,complex128复数，对应float32和float64
+常量，使用const表示
+
+复合数据类型数组
+固定长度的特定类型元素序列，长度固定
+
+slice切片
+不定长数组，用法和数组类型，以后单独谈论slice ===(✿◡‿◡)==========
+内置函数len，cap分别返回sli ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2019/12/09/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" title="go-basic-程序结构">     <img class="post_bg" data-src="https://i.loli.net/2020/06/24/ECDMSvkQHGhdPTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="go-basic-程序结构"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/12/09/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" title="go-basic-程序结构">go-basic-程序结构</a><div class="article-meta-wrap"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2019-12-09 15:07:31"><i class="far fa-calendar-alt"></i>2019-12-09</span><span class="article-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-06-24 18:39:04"><i class="fas fa-history"></i>2020-06-24</span></time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/go/">go</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/go/">go</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/golang/">golang</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/go-basic/">go-basic</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/">go-basic-程序结构</a></span></div><div class="content">Gopher，开始程序结构啦，go，go，go============&lt;(￣︶￣)&gt;==========
+
+go内置的关键字
 
 
 
+声明变量
+var 变量名字 类型 = 表达式
+声明const不需要变量类型，数据变量可以简短声明，形式如下
+变量名字 := 表达式
+简短声明的变量名必须有一个是没有声明过
 
-  </div>
-</body>
-</html>
+123456789101112131415161718//boilingpackage mainimport (	"fmt")//命名常量//使用const//在外面声明的是全局变量const boilingF = 212.0func main() &#123;	//局部变量, 局部变量必须使用	var f = boilingF    //简短声明，c必须是没有声明过的    c := (f - 32) * 5 / 9	fmt.Printf("boiling point = %gF or %gC\n", f, c)&#125;
+
+来个小栗子=========o(^＠^)o=======================12345678910111213141516171819 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2019/12/09/go-basic-%E5%85%A5%E9%97%A8/" title="go-basic-入门">     <img class="post_bg" data-src="https://i.loli.net/2020/06/24/ECDMSvkQHGhdPTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="go-basic-入门"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/12/09/go-basic-%E5%85%A5%E9%97%A8/" title="go-basic-入门">go-basic-入门</a><div class="article-meta-wrap"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2019-12-09 09:18:42"><i class="far fa-calendar-alt"></i>2019-12-09</span><span class="article-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-06-24 18:38:47"><i class="fas fa-history"></i>2020-06-24</span></time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/go/">go</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/go/">go</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/go-basic/">go-basic</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/golamg/">golamg</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/go-baisc-%E5%85%A5%E9%97%A8/">go-baisc-入门</a></span></div><div class="content">Gopher第一天
+
+hello world1234567package mainimport "fmt"func main() &#123;	fmt.Printf("Hello world\n")&#125;
+
+==================萌新学习中=====================================
+==================(&gt;▽&lt;)=====================(&gt;▽&lt;)================
+命令行参数
+可以使用os.Args获取命令行参数，os.Args是一个string的切片
+
+===================萌新的分界线======┗|｀O′|┛ 嗷~~=================
+举个栗子：
+12345678910111213141516171819//echo第一版本package mainimport "os"import "fmt"func main() &#123;	var s,sep string    //go的for循环    //for initializ ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://i.loli.net/2020/06/24/IwgXGUdHJCxSTBl.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">夜</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives"><div class="headline">文章</div><div class="length_num">27</div></a></div><div class="card-info-data-item is-center">      <a href="/tags"><div class="headline">标签</div><div class="length_num">35</div></a></div><div class="card-info-data-item is-center">     <a href="/categories"><div class="headline">分类</div><div class="length_num">4</div></a></div></div><div class="card-info-bookmark is-center"><button class="button--animated" id="bookmark-it" title="加入书签"><i class="fas fa-bookmark"></i><span>加入书签</span></button></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/mxuanp" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:kamiyamayo7@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS链接"><i class="fa fa-rss"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-recent-item"><div class="aside-recent-post"><a href="/2020/06/23/hello-world/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/06/24/ECDMSvkQHGhdPTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="Hello World - 夜 - Hexo" alt="Hello World - 夜 - Hexo"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/06/23/hello-world/" title="Hello World - 夜 - Hexo">Hello World - 夜 - Hexo</div><time class="aside-post_meta post-meta__date" title="发表于 2020-06-23 20:02:02">2020-06-23</time></div></a></div><div class="aside-recent-post"><a href="/2020/06/21/Go%E8%AF%AD%E8%A8%80%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/06/24/ECDMSvkQHGhdPTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="Go语言高级编程学习笔记-01" alt="Go语言高级编程学习笔记-01"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/06/21/Go%E8%AF%AD%E8%A8%80%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/" title="Go语言高级编程学习笔记-01">Go语言高级编程学习笔记-01</div><time class="aside-post_meta post-meta__date" title="发表于 2020-06-21 19:13:46">2020-06-21</time></div></a></div><div class="aside-recent-post"><a href="/2020/04/15/Go%E8%AF%AD%E8%A8%80%E6%A0%87%E5%87%86%E5%BA%93-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-1/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/06/24/ECDMSvkQHGhdPTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="Go语言标准库-读书笔记-1" alt="Go语言标准库-读书笔记-1"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/04/15/Go%E8%AF%AD%E8%A8%80%E6%A0%87%E5%87%86%E5%BA%93-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-1/" title="Go语言标准库-读书笔记-1">Go语言标准库-读书笔记-1</div><time class="aside-post_meta post-meta__date" title="发表于 2020-04-15 15:42:51">2020-04-15</time></div></a></div><div class="aside-recent-post"><a href="/2020/04/07/%E5%9B%9E%E9%A1%BE-Go%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/06/24/ECDMSvkQHGhdPTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="回顾-Go类型系统" alt="回顾-Go类型系统"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/04/07/%E5%9B%9E%E9%A1%BE-Go%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/" title="回顾-Go类型系统">回顾-Go类型系统</div><time class="aside-post_meta post-meta__date" title="发表于 2020-04-07 20:53:03">2020-04-07</time></div></a></div><div class="aside-recent-post"><a href="/2020/03/20/go-slice/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/06/24/ECDMSvkQHGhdPTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="go-slice" alt="go-slice"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/03/20/go-slice/" title="go-slice">go-slice</div><time class="aside-post_meta post-meta__date" title="发表于 2020-03-20 20:51:59">2020-03-20</time></div></a></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div><ul class="card-category-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/chef/"><span class="card-category-list-name">chef</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/docker/"><span class="card-category-list-name">docker</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/go/"><span class="card-category-list-name">go</span><span class="card-category-list-count">22</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/hello/"><span class="card-category-list-name">hello</span><span class="card-category-list-count">1</span></a></li>
+                       
+            </ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/RPC/" style="font-size: 16px; color: #999">RPC</a> <a href="/tags/algorithm/" style="font-size: 16px; color: #999">algorithm</a> <a href="/tags/cgo/" style="font-size: 16px; color: #999">cgo</a> <a href="/tags/docker/" style="font-size: 16px; color: #999">docker</a> <a href="/tags/gRPC/" style="font-size: 16px; color: #999">gRPC</a> <a href="/tags/go/" style="font-size: 22px; color: #99a9bf">go</a> <a href="/tags/go-baisc-%E5%85%A5%E9%97%A8/" style="font-size: 16px; color: #999">go-baisc-入门</a> <a href="/tags/go-basic/" style="font-size: 19.6px; color: #99a3b0">go-basic</a> <a href="/tags/go-basic-%E5%87%BD%E6%95%B0/" style="font-size: 16px; color: #999">go-basic-函数</a> <a href="/tags/go-basic-%E6%8E%A5%E5%8F%A3/" style="font-size: 16px; color: #999">go-basic-接口</a> <a href="/tags/go-basic-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 16px; color: #999">go-basic-数据类型</a> <a href="/tags/go-basic-%E6%96%B9%E6%B3%95/" style="font-size: 16px; color: #999">go-basic-方法</a> <a href="/tags/go-basic-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" style="font-size: 16px; color: #999">go-basic-程序结构</a> <a href="/tags/go-channel/" style="font-size: 16px; color: #999">go-channel</a> <a href="/tags/go-error/" style="font-size: 16px; color: #999">go-error</a> <a href="/tags/go-tool/" style="font-size: 16px; color: #999">go-tool</a> <a href="/tags/golamg/" style="font-size: 16px; color: #999">golamg</a> <a href="/tags/golang/" style="font-size: 20.8px; color: #99a6b7">golang</a> <a href="/tags/goroutine/" style="font-size: 16px; color: #999">goroutine</a> <a href="/tags/json/" style="font-size: 16px; color: #999">json</a> <a href="/tags/life/" style="font-size: 18.4px; color: #999fa8">life</a> <a href="/tags/reflect/" style="font-size: 16px; color: #999">reflect</a> <a href="/tags/review/" style="font-size: 17.2px; color: #999ca1">review</a> <a href="/tags/slice/" style="font-size: 16px; color: #999">slice</a> <a href="/tags/sort/" style="font-size: 16px; color: #999">sort</a> <a href="/tags/start/" style="font-size: 16px; color: #999">start</a> <a href="/tags/strings/" style="font-size: 16px; color: #999">strings</a> <a href="/tags/test/" style="font-size: 16px; color: #999">test</a> <a href="/tags/vim/" style="font-size: 16px; color: #999">vim</a> <a href="/tags/websocket/" style="font-size: 16px; color: #999">websocket</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 16px; color: #999">并发编程</a> <a href="/tags/%E7%81%AB%E9%94%85/" style="font-size: 16px; color: #999">火锅</a> <a href="/tags/%E7%8C%AA%E8%B9%84/" style="font-size: 16px; color: #999">猪蹄</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16px; color: #999">算法</a> <a href="/tags/%E9%9D%A2/" style="font-size: 16px; color: #999">面</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/06/"><span class="card-archive-list-date">六月 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/04/"><span class="card-archive-list-date">四月 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/03/"><span class="card-archive-list-date">三月 2020</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/02/"><span class="card-archive-list-date">二月 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/01/"><span class="card-archive-list-date">一月 2020</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/12/"><span class="card-archive-list-date">十二月 2019</span><span class="card-archive-list-count">12</span></a></li></ul></div></div></div></main><footer id="footer" style="background-image: url(https://i.loli.net/2020/06/24/FZsk3crg1BYX9Cp.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020 By 夜</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div><div class="footer_custom_text"><a href="https://mxuanp.github.io">Like a dream</a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button class="translate_chn_to_cht" id="translateLink" title="简繁转换">簡</button><button id="darkmode" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script id="ribbon_piao" mobile="true" src="/js/third-party/piao.js"></script><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><script src="https://cdn.jsdelivr.net/npm/typed.js"></script><script>var subtitleEffect = true
+if (subtitleEffect) { 
+  var typed = new Typed("#subtitle", {
+    strings: "Like a dream".split(","),
+    startDelay: 300,
+    typeSpeed: 150,
+    loop: true,
+    backSpeed: 50
+  })
+} else {
+  document.getElementById("subtitle").innerHTML = 'Like a dream'
+}</script><script>var endLoading = function () {
+  document.body.style.overflow = 'auto';
+  document.getElementById('loading-box').classList.add("loaded")
+}
+window.addEventListener('load',endLoading)</script></body></html>
